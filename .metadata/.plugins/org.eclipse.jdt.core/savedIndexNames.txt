@@ -1,0 +1,5 @@
+INDEX VERSION 1.132+G:\Il mio Drive\2. Areas\Università\3 Anno\Ingegneria del Software\JAVA\.metadata\.plugins\org.eclipse.jdt.core
+3118516847.index
+3152689092.index
+1865797976.index
+2615777796.index
