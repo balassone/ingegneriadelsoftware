@@ -7,6 +7,6 @@ public class DBAppuntamento {
 	private String note;
 	private String esito;
 	private DBTelefonata telefonata;
-	private DBAppuntamento precedente;
+	private DBAppuntamento precedente; // Potrebbe anche essere int, vediamo come caricarlo dal DB
 	private DBAgentediVendita agente;
 }
