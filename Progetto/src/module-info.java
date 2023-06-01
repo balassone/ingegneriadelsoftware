@@ -6,4 +6,5 @@
  *
  */
 module ProgettoIS {
+	requires java.sql;
 }
