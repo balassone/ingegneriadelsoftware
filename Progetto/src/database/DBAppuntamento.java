@@ -9,4 +9,9 @@ public class DBAppuntamento {
 	private DBTelefonata telefonata;
 	private DBAppuntamento precedente; // Potrebbe anche essere int, vediamo come caricarlo dal DB
 	private DBAgentediVendita agente;
+	
+	
+	
+	
+	
 }

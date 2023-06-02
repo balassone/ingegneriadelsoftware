@@ -14,6 +14,7 @@ public class EntityCentralinista {
 	
 	public EntityCentralinista() {
 		super();
+		this.telefonate = new ArrayList<EntityTelefonata>();
 	}
 	//Costruttore con PK
 	public EntityCentralinista(int id) {
@@ -27,10 +28,14 @@ public class EntityCentralinista {
 	}
 	//Costruttore con DB
 	public EntityCentralinista(DBCentralinista centralinista) {
-		//this.id=centralinista.getId();
-		//this.nome=centralinista.getNome();
-		//this.cognome=centralinista.getCognome();
-		//this.email=centralinista.getEmail();
+		this.id=centralinista.getId();
+		this.nome=centralinista.getNome();
+		this.cognome=centralinista.getCognome();
+		this.email=centralinista.getEmail();
+		this.telefonate = new ArrayList<EntityTelefonata>();
+		
+		centralinista.caricaTelefonateDaDB();
+		caricaTelefonate(centralinista);
 	}
 	
 	public int scriviSuDB(String id) {
@@ -75,6 +80,18 @@ public class EntityCentralinista {
 		this.email = email;
 	}
 	
+	public EntityGruppo getGruppo() {
+		return gruppo;
+	}
+	public void setGruppo(EntityGruppo gruppo) {
+		this.gruppo = gruppo;
+	}
+	public ArrayList<EntityTelefonata> getTelefonate() {
+		return telefonate;
+	}
+	public void setTelefonate(ArrayList<EntityTelefonata> telefonate) {
+		this.telefonate = telefonate;
+	}
 	@Override
 	public String toString() {
 		return "EntityCentralinista [id="+id+", nome= "+nome+", cognome="+cognome+", email="+email+"]";

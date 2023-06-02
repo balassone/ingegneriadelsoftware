@@ -15,7 +15,6 @@ public class DBCentralinista {
 	// Costruttore vuoto
 	public DBCentralinista() {
 		super();
-		this.gruppo = new DBGruppo();
 		this.telefonate = new ArrayList<DBTelefonata>();
 	}
 	// Costruttore con ID
