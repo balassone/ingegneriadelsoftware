@@ -1,5 +1,6 @@
 package entity;
 
+import java.util.ArrayList;
 import database.DBCentralinista;
 
 public class EntityCentralinista {
@@ -7,7 +8,10 @@ public class EntityCentralinista {
 	private String nome;
 	private String cognome;
 	private String email;
-	// Aggiungere gruppo e array di telefonate, qui e nelle funzioni!!!
+	private EntityGruppo gruppo;
+	private ArrayList<EntityTelefonata> telefonate;
+	
+	
 	public EntityCentralinista() {
 		super();
 	}
@@ -17,25 +21,25 @@ public class EntityCentralinista {
 		this.id=id;
 		
 		DBCentralinista centralinista = new DBCentralinista(id);
-		this.nome=centralinista.getNome();
-		this.cognome=centralinista.getCognome();
-		this.email=centralinista.getEmail();
+		//this.nome=centralinista.getNome();
+		//this.cognome=centralinista.getCognome();
+		//this.email=centralinista.getEmail();
 	}
 	//Costruttore con DB
 	public EntityCentralinista(DBCentralinista centralinista) {
-		this.id=centralinista.getId();
-		this.nome=centralinista.getNome();
-		this.cognome=centralinista.getCognome();
-		this.email=centralinista.getEmail();
+		//this.id=centralinista.getId();
+		//this.nome=centralinista.getNome();
+		//this.cognome=centralinista.getCognome();
+		//this.email=centralinista.getEmail();
 	}
 	
 	public int scriviSuDB(String id) {
 		DBCentralinista c = new DBCentralinista();
-		
-		c.setNome(this.nome);
-		c.setCognome(this.cognome);
-		c.setEmail(this.email);
-		int i = c.SalvaInDB(id);
+		int i=0;
+		//c.setNome(this.nome);
+		//c.setCognome(this.cognome);
+		//c.setEmail(this.email);
+		//i = c.SalvaInDB(id);
 		return i;
 	}
 	

@@ -12,29 +12,46 @@ public class DBCentralinista {
 	private DBGruppo gruppo;
 	private ArrayList<DBTelefonata> telefonate;
 	
+	// Costruttore vuoto
 	public DBCentralinista() {
 		super();
+		this.gruppo = new DBGruppo();
 		this.telefonate = new ArrayList<DBTelefonata>();
 	}
-	
+	// Costruttore con ID
 	public DBCentralinista(int id) {
 		this.id=id;
+		this.gruppo = new DBGruppo();
 		this.telefonate = new ArrayList<DBTelefonata>();
 		caricaDaDB();
 	}
 	
+	public DBCentralinista(int id, DBGruppo gruppo) {
+		this.id=id;
+		this.telefonate = new ArrayList<DBTelefonata>();
+		this.gruppo=gruppo;
+	}
+	
+	public DBCentralinista(DBCentralinista centr) {
+		this.id=centr.getId();
+		this.nome=centr.getNome();
+		this.cognome=centr.getCognome();
+		this.email=centr.getEmail();
+	}
+	
+	// Caricamento
 	public void caricaDaDB() {
 		String query = "SELECT * FROM centralinisti WHERE id='"+this.id+"';";
 		try {
 			
 			ResultSet rs = DBConnectionManager.selectQuery(query);
 			
-			if(rs.next()) { //se ho un risultato
+			if(rs.next()) { 
 				
-				//mi vado a prendere i dati, accedendo tramite il nome dell'attributo-colonna
 				this.setNome(rs.getString("nome"));
 				this.setCognome(rs.getString("cognome"));
-				this.setEmail(rs.getString("email"));				
+				this.setEmail(rs.getString("email"));
+				
 			}
 		
 		} catch (ClassNotFoundException | SQLException e) {
@@ -43,34 +60,86 @@ public class DBCentralinista {
 		}
 	}
 	
+	// Caricamento Gruppo
+	
 	public void caricaTelefonateDaDB() {
-		
-		String query = new String("select * from telefonate where idCentralinista ='"+this.id+"')" );
-		//System.out.println(query); //stampo query per controllo in fase di DEBUG, poi posso commentare
+		String query = new String("SELECT * FROM telefonate WHERE centralinisti_id='"+this.id+"';");
 		
 		try {
-			
 			ResultSet rs = DBConnectionManager.selectQuery(query);
 			
-			while(rs.next()) {	//while perch� mi aspetto pi� risultati			
-							
-				//NB: non dimenticare di istanziare l'oggetto Corso
-				//altrimenti non potremmo salvare i suoi dati				
-				DBTelefonata corso = new DBTelefonata();
-				//corso.setIdCorso(rs.getInt("idCorsi"));
-				//corso.setNome(rs.getString("nome"));				
-				
-				//corso.caricaTestiCorsoDaDB(); //****NB :CARICAMENTO IN CASCATA****
-				//this.corsi.add(corso); //salvo l'oggetto corso appena caricato
-				//come attributo dell'oggetto StudenteDB in questione
-				
-				
+			while(rs.next()) {
+				DBTelefonata tel = new DBTelefonata();
+				tel.setId(rs.getInt("id"));
+				tel.setData(rs.getString("data"));
+				tel.setOra(rs.getString("ora"));
+				tel.setNote(rs.getString("note"));
+				tel.setEsito(rs.getInt("esito"));
+				tel.setCentralinista(this);
+				this.telefonate.add(tel);
 			}
-			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCognome() {
+		return cognome;
+	}
+
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public DBGruppo getGruppo() {
+		return gruppo;
+	}
+
+	public void setGruppo(DBGruppo gruppo) {
+		this.gruppo = gruppo;
+	}
+
+	public ArrayList<DBTelefonata> getTelefonate() {
+		return telefonate;
+	}
+
+	public void setTelefonate(ArrayList<DBTelefonata> telefonate) {
+		this.telefonate = telefonate;
+	}
+	
+	@Override
+	public String toString() {
+		return "DBCentralinista [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", email=" + email
+				+ ", gruppo=" + gruppo + ", telefonate=" + telefonate + "]";
+	}
 	
 	
+
 }
