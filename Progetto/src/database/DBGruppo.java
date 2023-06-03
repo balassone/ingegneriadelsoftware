@@ -71,7 +71,6 @@ public class DBGruppo {
 		int ret = 0;
 		
 		String query = "INSERT INTO gruppi(id,descrizione) VALUES ( \'"+this.id+"\',"+"\'"+this.descrizione+"')"; 
-		System.out.println(query);
 		try {
 			ret = DBConnectionManager.updateQuery(query);
 			
@@ -111,7 +110,7 @@ public class DBGruppo {
 		int ret = 0;
 		
 		String query = "DELETE FROM gruppi WHERE id='"+id+"';"; 
-		System.out.println(query);
+		
 		try {
 			ret = DBConnectionManager.updateQuery(query);
 			

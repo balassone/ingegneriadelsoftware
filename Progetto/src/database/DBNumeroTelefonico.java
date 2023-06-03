@@ -1,6 +1,5 @@
 package database;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBNumeroTelefonico {
@@ -38,6 +37,7 @@ public class DBNumeroTelefonico {
 		
 		try {
 			DBConnectionManager.updateQuery(query);
+			ret=1;
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 			ret = -1;

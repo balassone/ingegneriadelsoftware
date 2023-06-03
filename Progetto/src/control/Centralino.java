@@ -1,13 +1,6 @@
 package control;
 
-import entity.EntityListaNumeriTelefonici;
-import entity.EntityGruppo;
-import entity.EntityNumeroTelefonico;
-import entity.EntityTelefonata;
-import entity.EntityAppuntamento;
-import entity.EntityAgentediVendita;
-import entity.EntityCentralinista;
-import entity.EntityAppuntamento;
+import entity.*;
 import java.util.ArrayList;
 
 public class Centralino {
@@ -144,33 +137,44 @@ public class Centralino {
 		return ret;
 	}
 	
-	// Funzione per visualizzare gruppi con liste non assegnate?
-	// Funzione per vedere appuntamenti di un centralinista?
-	
 	public static ArrayList<EntityAppuntamento> ottieniAppuntamenti(String cf) {
 		EntityAgentediVendita a = new EntityAgentediVendita(cf);
 		return a.getAppuntamenti();
 	}
 	
-	public static String visualizzaNoteChiamata(String cf, int index) {
+	public static String visualizzaNoteChiamata(String cf, int idChiamata) {
 		ArrayList<EntityAppuntamento> l = ottieniAppuntamenti(cf);
-		return l.get(index).getTelefonata().getNote();
+		for(int i=0; i<l.size(); i++) {
+			if(l.get(i).getTelefonata().getId()==idChiamata) {
+				return l.get(i).getTelefonata().getNote();
+			}
+		}
+		return "Chiamata non trovata";
 	}
 	
-	public static String visualizzaDettagliAppuntamento(String cf, int index) {
+	
+	public static String visualizzaDettagliAppuntamento(String cf, int idAppuntamento) {
 		
 		ArrayList<EntityAppuntamento> l = ottieniAppuntamenti(cf);
-		
-		return l.get(index).toString();
+		for(int i=0; i<l.size(); i++) {
+			if(l.get(i).getId()==idAppuntamento) {
+				return l.get(i).toString();
+			}
+		}
+		return "Non Trovato";
 		
 	}
 	
-	public static int modificaNoteAppuntamento(String cf, int index, String nuoveNote) {
+	public static int modificaNoteAppuntamento(String cf, int idAppuntamento, String nuoveNote) {
 		int ret=0;
 		
 		ArrayList<EntityAppuntamento> l = ottieniAppuntamenti(cf);
-		l.get(index).setNote(nuoveNote);
-		ret = l.get(index).aggiornaSuDB();
+		for(int i=0; i<l.size(); i++) {
+			if(l.get(i).getId()==idAppuntamento) {
+				l.get(i).setNote(nuoveNote);
+				ret = l.get(i).aggiornaSuDB();
+			}
+		}
 		
 		return ret;
 	}
