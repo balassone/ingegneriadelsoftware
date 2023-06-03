@@ -84,6 +84,77 @@ public class DBGruppo {
 		
 		return ret;
 	}
+	
+	public int trovaGruppo(int id) {
+		int ret = 0;
+		
+		String query = "SELECT * FROM gruppi where id='"+id+"';";
+		
+		try {
+			ResultSet rs = DBConnectionManager.selectQuery(query);
+			if(rs.next()) {
+				ret=1;
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ret = -1;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ret = -1;
+		}
+		return ret;
+	}
+	
+	public int rimuoviDaDB(int id) {
+		int ret = 0;
+		
+		String query = "DELETE FROM gruppi WHERE id='"+id+"';"; 
+		System.out.println(query);
+		try {
+			ret = DBConnectionManager.updateQuery(query);
+			
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ret = -1; //per segnalare l'errore di scrittura
+		}
+		
+		return ret;
+	}
+	
+	public boolean checkListaAssegnata(int idLista) {
+		boolean check = true;
+		
+		String query = "SELECT * FROM gruppi WHERE lista='"+idLista+"';";
+		
+		try {
+			ResultSet rs = DBConnectionManager.selectQuery(query);
+			if(!rs.next()) {
+				check=false;
+			}
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return check;
+	}
+	
+	public int assegnaLista(int idLista, int idGruppo) {
+		int ret=0;
+		
+		String query = "UPDATE gruppi SET lista='"+idLista+"' WHERE id='"+idGruppo+"';";
+		
+		try {
+			ret = DBConnectionManager.updateQuery(query);
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return ret;
+	}
 
 	public int getId() {
 		return id;

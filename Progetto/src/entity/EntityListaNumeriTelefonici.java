@@ -25,8 +25,8 @@ public class EntityListaNumeriTelefonici {
 		lista.caricaNumeriDaDB();
 		caricaNumeri(lista);
 		
-		lista.caricaGruppoDaDB();
-		caricaGruppo(lista);
+		//lista.caricaGruppoDaDB();
+		//caricaGruppo(lista);
 		
 	}
 	
@@ -36,8 +36,8 @@ public class EntityListaNumeriTelefonici {
 		this.numeri=new ArrayList<EntityNumeroTelefonico>();
 		lista.caricaNumeriDaDB();
 		caricaNumeri(lista);
-		lista.caricaGruppoDaDB();
-		caricaGruppo(lista);
+		//lista.caricaGruppoDaDB();
+		//caricaGruppo(lista);
 	}
 	
 	public int ScriviSuDB(int id, String nome) {

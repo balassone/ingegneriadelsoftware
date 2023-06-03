@@ -20,11 +20,15 @@ public class EntityCentralinista {
 	public EntityCentralinista(int id) {
 		super();
 		this.id=id;
-		
 		DBCentralinista centralinista = new DBCentralinista(id);
-		//this.nome=centralinista.getNome();
-		//this.cognome=centralinista.getCognome();
-		//this.email=centralinista.getEmail();
+		this.nome=centralinista.getNome();
+		this.cognome=centralinista.getCognome();
+		this.email=centralinista.getEmail();
+		this.telefonate = new ArrayList<EntityTelefonata>();
+		centralinista.caricaTelefonateDaDB();
+		caricaTelefonate(centralinista);
+		centralinista.caricaGruppoDaDB();
+		caricaGruppo(centralinista);
 	}
 	//Costruttore con DB
 	public EntityCentralinista(DBCentralinista centralinista) {
@@ -33,11 +37,24 @@ public class EntityCentralinista {
 		this.cognome=centralinista.getCognome();
 		this.email=centralinista.getEmail();
 		this.telefonate = new ArrayList<EntityTelefonata>();
-		
 		centralinista.caricaTelefonateDaDB();
 		caricaTelefonate(centralinista);
+		centralinista.caricaGruppoDaDB();
+		caricaGruppo(centralinista);
 	}
 	
+	public void caricaTelefonate(DBCentralinista centralinista) {
+		for(int i=0; i<centralinista.getTelefonate().size(); i++) {
+			EntityTelefonata tel = new EntityTelefonata(centralinista.getTelefonate().get(i));
+			this.telefonate.add(tel);
+		}
+	}
+	
+	public void caricaGruppo(DBCentralinista centralinista) {
+		EntityGruppo g = new EntityGruppo(centralinista.getGruppo());
+		this.gruppo=g;
+	}
+	/*
 	public int scriviSuDB(String id) {
 		DBCentralinista c = new DBCentralinista();
 		int i=0;
@@ -47,6 +64,7 @@ public class EntityCentralinista {
 		//i = c.SalvaInDB(id);
 		return i;
 	}
+	*/
 	
 	public int getId() {
 		return id;

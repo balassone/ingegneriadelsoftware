@@ -20,8 +20,8 @@ public class EntityGruppo {
 		this.descrizione=g.getDescrizione();
 		this.centralinisti=new ArrayList<EntityCentralinista>();
 		
-		g.caricaCentralinistiDaDB();
-		caricaCentralinisti(g);
+		//g.caricaCentralinistiDaDB();
+		//caricaCentralinisti(g);
 		g.caricaListaDaDB();
 		caricaLista(g);
 	}
@@ -36,6 +36,43 @@ public class EntityGruppo {
 	public void caricaLista(DBGruppo g) {
 		EntityListaNumeriTelefonici l = new EntityListaNumeriTelefonici(g.getLista());
 		this.lista=l;
+	}
+	
+	public int trovaGruppo(int id) {
+		int ret=-1;
+		DBGruppo g = new DBGruppo();
+		ret = g.trovaGruppo(id);
+		return ret;
+	}
+	
+	public int scriviSuDB(int id, String descrizione) {
+		int ret=0;
+		DBGruppo g = new DBGruppo();
+		g.setId(id);
+		g.setDescrizione(descrizione);
+		ret = g.SalvaInDB();
+		return ret;
+	}
+	
+	public int rimuoviDaDB(int id) {
+		int ret=0;
+		DBGruppo g = new DBGruppo();
+		ret = g.rimuoviDaDB(id);
+		return ret;
+	}
+	
+	public boolean checkListaAssegnata(int id) {
+		boolean assegnata=true;
+		DBGruppo g = new DBGruppo();
+		assegnata = g.checkListaAssegnata(id);
+		return assegnata;
+	}
+	
+	public int assegnaLista(int idLista, int idGruppo) {
+		int ret=0;
+		DBGruppo g = new DBGruppo();
+		ret=g.assegnaLista(idLista, idGruppo);
+		return ret;
 	}
 	
 	public int getId() {

@@ -62,7 +62,7 @@ public class DBCentralinista {
 	// Caricamento Gruppo
 	
 	public void caricaTelefonateDaDB() {
-		String query = new String("SELECT * FROM telefonate WHERE centralinisti_id='"+this.id+"';");
+		String query = new String("SELECT * FROM telefonate WHERE centralinista='"+this.id+"';");
 		
 		try {
 			ResultSet rs = DBConnectionManager.selectQuery(query);
@@ -83,7 +83,22 @@ public class DBCentralinista {
 		}
 	}
 	
-
+	public void caricaGruppoDaDB() {
+		String query = "SELECT * FROM gruppi WHERE id=(SELECT gruppo FROM centralinisti WHERE id='"+this.id+"');";
+		try {
+			ResultSet rs = DBConnectionManager.selectQuery(query);
+			
+			if(rs.next()) {
+				DBGruppo g = new DBGruppo();
+				g.setId(rs.getInt("id"));
+				g.setDescrizione(rs.getString("descrizione"));
+				this.gruppo=g;
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public int getId() {
 		return id;
