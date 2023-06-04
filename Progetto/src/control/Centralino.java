@@ -5,79 +5,60 @@ import java.util.ArrayList;
 
 public class Centralino {
 	
-	public Centralino() {
-		super();
-	}
-	
-	public static int creaLista(int id, String nome) {
-		int ret=-1;
-		if(!(trovaLista(id)>0)) {
-			EntityListaNumeriTelefonici lista = new EntityListaNumeriTelefonici();
-			ret = lista.ScriviSuDB(id, nome);
-			if(ret!=-1) {
-				lista.setId(id);
-				lista.setNome(nome);
-			}
-		} else {
-			System.out.println("Lista con ID analogo già presente!");
-		}
-		return ret;
-	}
-	
 	public static int trovaLista(int id) {
 		int ret=0;
 		EntityListaNumeriTelefonici l = new EntityListaNumeriTelefonici();
 		ret = l.trovaLista(id);
-		
 		return ret;
 		
 	}
 	
+	public static int creaLista(String nome) {
+		int ret=-1;
+		EntityListaNumeriTelefonici lista = new EntityListaNumeriTelefonici();
+		int id=lista.ottieniLatestID();
+		ret = lista.ScriviSuDB(id, nome);
+		if(ret!=-1) {
+			lista.setId(id);
+			lista.setNome(nome);
+		}
+		return ret;
+	}
+	
+	
+	
 	public static int aggiungiNumero(int idLista, String numero) {
 		int ret=0;
-		
-		if(trovaLista(idLista)>0) {
 			
-			EntityListaNumeriTelefonici l = new EntityListaNumeriTelefonici(idLista);
+		EntityListaNumeriTelefonici l = new EntityListaNumeriTelefonici(idLista);
 			
-			EntityNumeroTelefonico n = new EntityNumeroTelefonico(numero);
+		EntityNumeroTelefonico n = new EntityNumeroTelefonico(numero);
 			
-			if(!l.verificaPresenza(n)) {
-				ret = n.aggiungiNumero(idLista, numero);
-			} else {
-				System.out.println("Numero Già Presente!");
-			}
+		if(!l.verificaPresenza(n)) {
+			ret = n.aggiungiNumero(idLista, numero);
 		} else {
-			ret=-1;
-			System.out.println("Lista non trovata!");
+			ret = -1;
 		}
 		return ret;
 	}
 	
 	public static int rimuoviNumero(int idLista, String numero) {
 		int ret=0;
-		if(trovaLista(idLista)>0) {
-			EntityListaNumeriTelefonici l = new EntityListaNumeriTelefonici(idLista);
-			EntityNumeroTelefonico n = new EntityNumeroTelefonico(numero);
+		
+		EntityListaNumeriTelefonici l = new EntityListaNumeriTelefonici(idLista);
+		EntityNumeroTelefonico n = new EntityNumeroTelefonico(numero);
 			
-			if(l.verificaPresenza(n)) {
-				ret = n.rimuoviNumero();
-			} else {
-				System.out.println("Numero Non Presente!");
-			}
-		} else {
-			ret=-1;
-			System.out.println("Lista non trovata!");
+		if(l.verificaPresenza(n)) {
+			ret = n.rimuoviNumero();
 		}
+		
 		return ret;
 	}
 	
 	public static int trovaGruppo(int id) {
 		int ret=0;
-		
 		EntityGruppo g = new EntityGruppo();
 		ret = g.trovaGruppo(id);
-		
 		return ret;
 	}
 	
@@ -87,11 +68,7 @@ public class Centralino {
 		if(!(trovaGruppo(id)>0)) {
 			EntityGruppo g = new EntityGruppo();
 			ret = g.scriviSuDB(id,descrizione);
-			// Da gestire l'aggiunta di centralinisti!
-			if(ret>0) {
-				g.setId(id);
-				g.setDescrizione(descrizione);
-			}
+			// TODO Da gestire l'aggiunta di centralinisti!
 		} else {
 			System.out.println("Il gruppo ha un ID già esistente!");
 		}
@@ -103,7 +80,7 @@ public class Centralino {
 	
 	public static int rimuoviGruppo(int id) {
 		int ret=0;
-		
+		// TODO Da gestire centralinisti con gruppo assegnato!
 		if(trovaGruppo(id)>0) {
 			EntityGruppo g = new EntityGruppo();
 			ret = g.rimuoviDaDB(id);
@@ -116,22 +93,11 @@ public class Centralino {
 	
 	public static int assegnaListaGruppo(int idLista, int idGruppo) {
 		int ret=0;
-		
-		if(trovaLista(idLista)>0) {
-			if(trovaGruppo(idGruppo)>0) {
-				
-				EntityGruppo g = new EntityGruppo();
-				if(!(g.checkListaAssegnata(idLista))) {
-					ret=g.assegnaLista(idLista, idGruppo);
-				} else {
-					System.out.println("Lista già assegnata!");
-				}
-				
-			} else {
-				System.out.println("Gruppo Non Trovato");
-			}
+		EntityGruppo g = new EntityGruppo();
+		if(!(g.checkListaAssegnata(idLista))) {
+			ret=g.assegnaLista(idLista, idGruppo);
 		} else {
-			System.out.println("Lista Non Trovata");
+			System.out.println("Lista già assegnata!");
 		}
 		
 		return ret;

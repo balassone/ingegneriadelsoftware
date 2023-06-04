@@ -85,6 +85,13 @@ public class EntityListaNumeriTelefonici {
 		return guardia;
 	}
 	
+	public int ottieniLatestID() {
+		int ret=0;
+		DBListaNumeriTelefonici l = new DBListaNumeriTelefonici();
+		ret = l.ottieniLatestId();
+		return ret;
+	}
+	
 	public int getId() {
 		return id;
 	}

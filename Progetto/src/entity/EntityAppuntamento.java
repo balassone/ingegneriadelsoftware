@@ -166,8 +166,7 @@ public class EntityAppuntamento {
 
 	@Override
 	public String toString() {
-		return "EntityAppuntamento [id=" + id + ", data=" + data + ", ora=" + ora + ", note=" + note + ", esito="
-				+ esito + ", telefonata=" + telefonata + ", agente=" + agente + "]";
+		return "Appuntamento " + id + ": \ndata:" + data + ", \nora:" + ora + ", \nnote:" + note + ".\n\n";
 	}
 	
 	

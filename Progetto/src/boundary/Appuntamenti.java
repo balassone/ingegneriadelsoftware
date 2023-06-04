@@ -8,12 +8,16 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import control.Centralino;
-import javax.swing.JLabel;
+import entity.EntityAppuntamento;
+
+import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextPane;
 
-public class AgenteView extends JFrame {
+public class Appuntamenti extends JFrame {
 
 	private JPanel contentPane;
 
@@ -24,7 +28,7 @@ public class AgenteView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AgenteView frame = new AgenteView();
+					Appuntamenti frame = new Appuntamenti();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,36 +40,32 @@ public class AgenteView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AgenteView() {
+	public Appuntamenti() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 556, 423);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Agente");
-		lblNewLabel.setBounds(10, 11, 46, 14);
-		contentPane.add(lblNewLabel);
+		JTextPane textPane = new JTextPane();
+		textPane.setBounds(10, 11, 520, 328);
+		contentPane.add(textPane);
 		
-		JButton btnNewButton = new JButton("I miei appuntamenti");
+		JButton btnNewButton = new JButton("Ottieni");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				new Appuntamenti().setVisible(true);
-				
+				String s = new String();
+				ArrayList<EntityAppuntamento> a = Centralino.ottieniAppuntamenti("ABCDEF00D11H123N");
+				for(int i=0; i<a.size(); i++) {
+					s=s+a.get(i).toString();
+				}
+				textPane.setText(s);
 			}
 		});
-		btnNewButton.setBounds(117, 71, 200, 23);
+		btnNewButton.setBounds(227, 350, 89, 23);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Visualizza Note Chiamata");
-		btnNewButton_1.setBounds(117, 175, 200, 23);
-		contentPane.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("Modifica Note Appuntamento");
-		btnNewButton_2.setBounds(117, 123, 200, 23);
-		contentPane.add(btnNewButton_2);
 	}
-
 }
