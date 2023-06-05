@@ -10,7 +10,7 @@ public class DBAppuntamento {
 	private String note;
 	private int esito;
 	private DBTelefonata telefonata;
-	private DBAppuntamento precedente; 
+	private int precedente; 
 	private DBAgentediVendita agente; 
 	
 	public DBAppuntamento() {
@@ -20,6 +20,7 @@ public class DBAppuntamento {
 	public DBAppuntamento(int id) {
 		super();
 		this.id=id;
+		this.precedente=-1;
 		caricaDaDB();
 	}
 	
@@ -34,13 +35,37 @@ public class DBAppuntamento {
 				this.ora=rs.getString("ora");
 				this.note=rs.getString("note");
 				this.esito=rs.getInt("esito");
+				if(rs.getInt("precedente")>0) {
+					this.precedente = rs.getInt("precedente");
+				}
+				
 			}
 			
 		} catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
-	
+	public int ottieniLatestID() {
+		int ret = 0;
+		
+		String query = "SELECT MAX(idappuntamenti) FROM appuntamenti;";
+		
+		try {
+			ResultSet rs = DBConnectionManager.selectQuery(query);
+			if(rs.next()) {
+				ret=rs.getInt(1)+1;
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ret = -1;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ret = -1;
+		}
+		return ret;
+	}
 	public void caricaTelefonataDaDB() {
 		String query = "SELECT * FROM telefonate WHERE id =(SELECT telefonata FROM appuntamenti WHERE idappuntamenti='"+this.id+"');";
 		try {
@@ -122,7 +147,7 @@ public class DBAppuntamento {
 	
 	public int referenziaInDB() {
 		int ret=0;
-		String query = "UPDATE appuntamenti SET precedente='"+this.precedente.getId()+"' WHERE idappuntamenti='"+this.id+"';";
+		String query = "UPDATE appuntamenti SET precedente='"+this.precedente+"' WHERE idappuntamenti='"+this.id+"';";
 		try {
 			ret = DBConnectionManager.updateQuery(query);
 		} catch(SQLException | ClassNotFoundException e) {
@@ -180,11 +205,11 @@ public class DBAppuntamento {
 		this.telefonata = telefonata;
 	}
 
-	public DBAppuntamento getPrecedente() {
+	public int getPrecedente() {
 		return precedente;
 	}
 
-	public void setPrecedente(DBAppuntamento precedente) {
+	public void setPrecedente(int precedente) {
 		this.precedente = precedente;
 	}
 

@@ -33,6 +33,28 @@ public class DBGruppo {
 		}
 	}
 	
+	public int ottieniLatestId() {
+		int ret = 0;
+		
+		String query = "SELECT MAX(id) FROM gruppi;";
+		
+		try {
+			ResultSet rs = DBConnectionManager.selectQuery(query);
+			if(rs.next()) {
+				ret=rs.getInt(1)+1;
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ret = -1;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ret = -1;
+		}
+		return ret;
+	}
+	
 	public void caricaCentralinistiDaDB() {
 		String query = "SELECT * FROM centralinisti WHERE gruppo='"+this.id+"';";
 		try {

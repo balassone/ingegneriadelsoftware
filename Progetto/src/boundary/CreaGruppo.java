@@ -2,18 +2,20 @@ package boundary;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.border.EmptyBorder;
+
 import control.Centralino;
-public class CreaLista extends JFrame {
+
+public class CreaGruppo extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -25,7 +27,7 @@ public class CreaLista extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CreaLista frame = new CreaLista();
+					CreaGruppo frame = new CreaGruppo();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +39,7 @@ public class CreaLista extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CreaLista() {
+	public CreaGruppo() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -45,7 +47,7 @@ public class CreaLista extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Creazione lista");
+		JLabel lblNewLabel = new JLabel("Creazione gruppo");
 		lblNewLabel.setBounds(10, 11, 187, 14);
 		contentPane.add(lblNewLabel);
 		
@@ -60,11 +62,12 @@ public class CreaLista extends JFrame {
 				int ret=0;
 				String text = textField.getText();
 				if(!text.isEmpty()) {
-					ret = Centralino.creaLista(text);
+					ret = Centralino.creaGruppo(text);
 				}
 				
 				if(ret>0) {
-					JOptionPane.showMessageDialog(btnNewButton, "Lista creata con id: "+ret+"!", "Plain Text", JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(btnNewButton, "Gruppo creato con id: "+ret+"!", "Plain Text", JOptionPane.PLAIN_MESSAGE);
+					new AggiungiCentralinista(ret).setVisible(true);
 				} else {
 					JOptionPane.showMessageDialog(btnNewButton, "Lista non inserita", "Error", JOptionPane.PLAIN_MESSAGE);
 				}
@@ -74,8 +77,9 @@ public class CreaLista extends JFrame {
 		btnNewButton.setBounds(335, 227, 89, 23);
 		contentPane.add(btnNewButton);
 		
-		JLabel lblNewLabel_1 = new JLabel("Nome lista:");
+		JLabel lblNewLabel_1 = new JLabel("Nome gruppo:");
 		lblNewLabel_1.setBounds(10, 60, 81, 14);
 		contentPane.add(lblNewLabel_1);
 	}
+
 }

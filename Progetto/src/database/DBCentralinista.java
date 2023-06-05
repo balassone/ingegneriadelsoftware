@@ -99,6 +99,30 @@ public class DBCentralinista {
 			e.printStackTrace();
 		}
 	}
+	
+	public int assegnaGruppo(int idGruppo, int idCentralinista) {
+		int ret=0;
+		String query = "UPDATE centralinisti SET gruppo='"+idGruppo+"' WHERE id='"+idCentralinista+"';";
+		try {
+			ret = DBConnectionManager.updateQuery(query);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ret;
+	}
+	
+	public int liberaTutti(int idGruppo) {
+		int ret=0;
+		String query = "UPDATE centralinisti SET gruppo=NULL WHERE gruppo='"+idGruppo+"';";
+		try {
+			ret = DBConnectionManager.updateQuery(query);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ret;
+	}
 
 	public int getId() {
 		return id;

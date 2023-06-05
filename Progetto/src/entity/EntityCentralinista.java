@@ -54,17 +54,20 @@ public class EntityCentralinista {
 		EntityGruppo g = new EntityGruppo(centralinista.getGruppo());
 		this.gruppo=g;
 	}
-	/*
-	public int scriviSuDB(String id) {
+	
+	public int assegnaGruppo(int idGruppo, int idCentralinista) {
+		int ret = 0;
 		DBCentralinista c = new DBCentralinista();
-		int i=0;
-		//c.setNome(this.nome);
-		//c.setCognome(this.cognome);
-		//c.setEmail(this.email);
-		//i = c.SalvaInDB(id);
-		return i;
+		ret = c.assegnaGruppo(idGruppo, idCentralinista);
+		return ret;
 	}
-	*/
+	
+	public int liberaTutti(int idGruppo) {
+		int ret = 0;
+		DBCentralinista c = new DBCentralinista();
+		ret = c.liberaTutti(idGruppo);
+		return ret;
+	}
 	
 	public int getId() {
 		return id;

@@ -32,6 +32,7 @@ public class DBAgentediVendita {
 				a.setNote(rs.getString("note"));
 				a.setEsito(rs.getInt("esito"));
 				a.setAgente(this);
+				a.setPrecedente(rs.getInt("precedente"));
 				this.appuntamenti.add(a);
 				
 			}

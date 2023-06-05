@@ -37,7 +37,7 @@ public class AgenteView extends JFrame {
 	 * Create the frame.
 	 */
 	public AgenteView() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -60,10 +60,24 @@ public class AgenteView extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Visualizza Note Chiamata");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				new NoteChiamata().setVisible(true);
+				
+			}
+		});
 		btnNewButton_1.setBounds(117, 175, 200, 23);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Modifica Note Appuntamento");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				new NoteAppuntamento().setVisible(true);
+				
+			}
+		});
 		btnNewButton_2.setBounds(117, 123, 200, 23);
 		contentPane.add(btnNewButton_2);
 	}

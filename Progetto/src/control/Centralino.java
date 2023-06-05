@@ -21,6 +21,7 @@ public class Centralino {
 		if(ret!=-1) {
 			lista.setId(id);
 			lista.setNome(nome);
+			ret=id;
 		}
 		return ret;
 	}
@@ -62,28 +63,33 @@ public class Centralino {
 		return ret;
 	}
 	
-	public static int creaGruppo(int id, String descrizione) {
+	public static int creaGruppo(String descrizione) {
 		int ret=0;
-		
-		if(!(trovaGruppo(id)>0)) {
-			EntityGruppo g = new EntityGruppo();
-			ret = g.scriviSuDB(id,descrizione);
-			// TODO Da gestire l'aggiunta di centralinisti!
-		} else {
-			System.out.println("Il gruppo ha un ID già esistente!");
+		int id=0;
+		EntityGruppo g = new EntityGruppo();
+		id = g.ottieniLatestID();
+		ret = g.scriviSuDB(id,descrizione);
+		if(ret>0) {
+			ret=id;
 		}
-		
 		return ret;
 	}
 	
-	
+	public static int inserisciCentralinistaGruppo(int idGruppo, int idCentralinista) {
+		int ret=0;
+		EntityCentralinista c = new EntityCentralinista();
+		ret = c.assegnaGruppo(idGruppo, idCentralinista);
+		return ret;
+	}
 	
 	public static int rimuoviGruppo(int id) {
 		int ret=0;
-		// TODO Da gestire centralinisti con gruppo assegnato!
 		if(trovaGruppo(id)>0) {
-			EntityGruppo g = new EntityGruppo();
-			ret = g.rimuoviDaDB(id);
+			EntityCentralinista c = new EntityCentralinista();
+			if(c.liberaTutti(id)>0) {
+				EntityGruppo g = new EntityGruppo();
+				ret = g.rimuoviDaDB(id);
+			}
 		} else {
 			System.out.println("Gruppo Non Trovato!");
 		}
@@ -131,6 +137,17 @@ public class Centralino {
 		
 	}
 	
+	public static String ottieniNoteAppuntamento(String cf, int idAppuntamento) {
+		String s="";
+		ArrayList<EntityAppuntamento> l = ottieniAppuntamenti(cf);
+		for(int i=0; i<l.size(); i++) {
+			if(l.get(i).getId()==idAppuntamento) {
+				s = l.get(i).getNote();
+			}
+		}
+		return s;
+	}
+	
 	public static int modificaNoteAppuntamento(String cf, int idAppuntamento, String nuoveNote) {
 		int ret=0;
 		
@@ -145,23 +162,19 @@ public class Centralino {
 		return ret;
 	}
 	
-	public static int richiediProssimoNumero(int idCentralinista) {
-		int ret=0;
+	public static ArrayList<EntityNumeroTelefonico> numeriDaChiamare(int idCentralinista) {
 		
 		EntityCentralinista c = new EntityCentralinista(idCentralinista);
 		EntityListaNumeriTelefonici l = new EntityListaNumeriTelefonici(c.getGruppo().getLista().getId());
 		ArrayList<EntityNumeroTelefonico> nums = l.getNumeri();
-		for(int i=0; i<nums.size(); i++) {
-			System.out.println(nums.get(i).getNumero());
-		}
-		
-		return ret;
+		return nums;
 	}
 	
-	public static int registraEsitoChiamata(int id, String data, String ora, String note, int esito, int idCentralinista) {
+	public static int registraEsitoChiamata(String data, String ora, String note, int esito, int idCentralinista) {
 		int ret=0;
 		
 		EntityTelefonata t = new EntityTelefonata();
+		int id = t.ottieniLatestID();
 		t.setId(id);
 		t.setData(data);
 		t.setOra(ora);
@@ -172,18 +185,18 @@ public class Centralino {
 		
 		ret = t.salvaInDB();
 		
-		if(esito==5) {
-			//non so se posso farlo qui creaAppuntamento
+		if(ret>0) {
+			ret=id;
 		}
 		
 		return ret;
 	}
 	
-	public static int creaAppuntamento(int id, String data, String ora, String note, int esito, String agente, int idTelefonata) {
+	public static int creaAppuntamento(String data, String ora, String note, int esito, String agente, int idTelefonata) {
 		int ret=0;
 		
 		EntityAppuntamento a = new EntityAppuntamento();
-		
+		int id = a.ottieniLatestID();
 		a.setId(id);
 		a.setData(data);
 		a.setOra(ora);
@@ -210,16 +223,13 @@ public class Centralino {
 	public static int referenziaAppuntamento(int idVecchio, int idNuovo) {
 		int ret=0;
 		
-		if(trovaAppuntamento(idVecchio)>0) {
-			if (trovaAppuntamento(idNuovo)>0) {
-				System.out.println("Trovati entrambi!");
-				EntityAppuntamento a = new EntityAppuntamento(idNuovo);
-				EntityAppuntamento b = new EntityAppuntamento(idVecchio);
-				a.setPrecedente(b);
+		
+		System.out.println("Trovati entrambi!");
+		EntityAppuntamento a = new EntityAppuntamento(idNuovo);
+		a.setPrecedente(idVecchio);
 				
-				ret = a.referenziaInDB();
-			}
-		}
+		ret = a.referenziaInDB();
+			
 		
 		return ret;
 	}

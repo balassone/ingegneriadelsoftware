@@ -36,7 +36,7 @@ public class AdminView extends JFrame {
 	 * Create the frame.
 	 */
 	public AdminView() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -77,6 +77,13 @@ public class AdminView extends JFrame {
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Crea Gruppo");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				new CreaGruppo().setVisible(true);
+				
+			}
+		});
 		btnNewButton_3.setBounds(249, 62, 136, 23);
 		contentPane.add(btnNewButton_3);
 		

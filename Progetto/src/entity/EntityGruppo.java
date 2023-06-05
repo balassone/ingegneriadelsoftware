@@ -38,6 +38,13 @@ public class EntityGruppo {
 		this.lista=l;
 	}
 	
+	public int ottieniLatestID() {
+		int id=0;
+		DBGruppo g = new DBGruppo();
+		id = g.ottieniLatestId();
+		return id;
+	}
+	
 	public int trovaGruppo(int id) {
 		int ret=-1;
 		DBGruppo g = new DBGruppo();

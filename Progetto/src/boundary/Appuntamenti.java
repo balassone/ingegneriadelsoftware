@@ -41,15 +41,15 @@ public class Appuntamenti extends JFrame {
 	 * Create the frame.
 	 */
 	public Appuntamenti() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 556, 423);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 699, 570);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JTextPane textPane = new JTextPane();
-		textPane.setBounds(10, 11, 520, 328);
+		textPane.setBounds(10, 11, 663, 475);
 		contentPane.add(textPane);
 		
 		JButton btnNewButton = new JButton("Ottieni");
@@ -63,7 +63,7 @@ public class Appuntamenti extends JFrame {
 				textPane.setText(s);
 			}
 		});
-		btnNewButton.setBounds(227, 350, 89, 23);
+		btnNewButton.setBounds(300, 497, 89, 23);
 		contentPane.add(btnNewButton);
 		
 		

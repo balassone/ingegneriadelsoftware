@@ -3,21 +3,21 @@ package boundary;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import control.Centralino;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-public class AssegnaListaGruppo extends JFrame {
+public class Referenzia extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -32,7 +32,7 @@ public class AssegnaListaGruppo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AssegnaListaGruppo frame = new AssegnaListaGruppo();
+					Referenzia frame = new Referenzia();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +44,7 @@ public class AssegnaListaGruppo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AssegnaListaGruppo() {
+	public Referenzia() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -58,7 +58,7 @@ public class AssegnaListaGruppo extends JFrame {
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("Assegna Lista a Gruppo");
+		JLabel lblNewLabel = new JLabel("Referenzia");
 		lblNewLabel.setBounds(10, 11, 133, 14);
 		contentPane.add(lblNewLabel);
 		
@@ -72,27 +72,27 @@ public class AssegnaListaGruppo extends JFrame {
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		textField_1.setEditable(false);
-		JLabel lblNewLabel_1 = new JLabel("Lista");
-		lblNewLabel_1.setBounds(10, 57, 46, 14);
+		JLabel lblNewLabel_1 = new JLabel("ID Vecchio Appuntamento");
+		lblNewLabel_1.setBounds(10, 57, 133, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Gruppo");
-		lblNewLabel_2.setBounds(10, 138, 46, 14);
+		JLabel lblNewLabel_2 = new JLabel("ID Nuovo Appuntamento");
+		lblNewLabel_2.setBounds(10, 138, 133, 14);
 		contentPane.add(lblNewLabel_2);
 		
-		JButton btnNewButton = new JButton("Check Lista");
+		JButton btnNewButton = new JButton("Check");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int ret = 0;
 				String id = textField.getText();
 				if (!id.isEmpty()) {
-					ret = Centralino.trovaLista(Integer.parseInt(id));
+					ret = Centralino.trovaAppuntamento(Integer.parseInt(id));
 					if (ret>0) {
-						textField_2.setText("Lista Trovata!");
+						textField_2.setText("Vecchio Trovato!");
 						textField_1.setEditable(true);
 						
 					} else {
-						textField_2.setText("Lista Non Trovata!");
+						textField_2.setText("Vecchio Non Trovato!");
 						textField_1.setEditable(false);
 					}
 				}
@@ -104,11 +104,11 @@ public class AssegnaListaGruppo extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int ret = 0;
-				String lista = textField.getText();
-				String gruppo = textField_1.getText();
-				ret = Centralino.assegnaListaGruppo(Integer.parseInt(lista), Integer.parseInt(gruppo));
+				String vecchio = textField.getText();
+				String nuovo = textField_1.getText();
+				ret = Centralino.referenziaAppuntamento(Integer.parseInt(vecchio), Integer.parseInt(nuovo));
 				if(ret>0) {
-					JOptionPane.showMessageDialog(btnNewButton, "Lista "+lista+" assegnata correttamente al gruppo "+gruppo+"!", "Plain Text", JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(btnNewButton, "Appuntamento "+vecchio+" assegnato correttamente al nuovo appuntamento "+nuovo+"!", "Plain Text", JOptionPane.PLAIN_MESSAGE);
 				} else {
 					JOptionPane.showMessageDialog(btnNewButton, "Non assegnato!", "Error", JOptionPane.PLAIN_MESSAGE);
 				}
@@ -117,18 +117,18 @@ public class AssegnaListaGruppo extends JFrame {
 		btnNewButton_2.setBounds(335, 227, 89, 23);
 		contentPane.add(btnNewButton_2);
 		
-		JButton btnNewButton_1 = new JButton("Check Gruppo");
+		JButton btnNewButton_1 = new JButton("Check");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int ret = 0;
 				String id = textField_1.getText();
 				if (!id.isEmpty()) {
-					ret = Centralino.trovaGruppo(Integer.parseInt(id));
+					ret = Centralino.trovaAppuntamento(Integer.parseInt(id));
 					if (ret>0) {
-						textField_3.setText("Gruppo Trovato!");
+						textField_3.setText("Nuovo Trovato!");
 						
 					} else {
-						textField_3.setText("Gruppo Non Trovato!");
+						textField_3.setText("Nuovo Non Trovato!");
 						
 					}
 				}

@@ -52,7 +52,27 @@ public class DBTelefonata {
 			e.printStackTrace();
 		}
 	}
-	
+	public int ottieniLatestID() {
+		int ret = 0;
+		
+		String query = "SELECT MAX(id) FROM telefonate;";
+		
+		try {
+			ResultSet rs = DBConnectionManager.selectQuery(query);
+			if(rs.next()) {
+				ret=rs.getInt(1)+1;
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ret = -1;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ret = -1;
+		}
+		return ret;
+	}
 	public void caricaAppuntamentoDaDB() {
 		String query = "SELECT * FROM appuntamenti WHERE telefonata='"+this.id+"';";
 		try {

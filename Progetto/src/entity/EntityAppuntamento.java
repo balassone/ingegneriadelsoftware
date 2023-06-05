@@ -12,7 +12,7 @@ public class EntityAppuntamento {
 	private int esito;
 	private EntityTelefonata telefonata;
 	private EntityAgentediVendita agente;
-	private EntityAppuntamento precedente;
+	private int precedente;
 	
 	public EntityAppuntamento() {
 		super();
@@ -26,6 +26,11 @@ public class EntityAppuntamento {
 		this.ora=a.getOra();
 		this.note=a.getNote();
 		this.esito=a.getEsito();
+		if(a.getPrecedente()>0) {
+			this.precedente=a.getPrecedente();
+		} else {
+			this.precedente=-1;
+		}
 		a.caricaTelefonataDaDB();
 		caricaTelefonata(a);
 		//a.caricaAgenteDaDB();
@@ -40,6 +45,9 @@ public class EntityAppuntamento {
 		this.ora=a.getOra();
 		this.note=a.getNote();
 		this.esito=a.getEsito();
+		if(a.getPrecedente()>0) {
+			this.precedente=a.getPrecedente();
+		}
 		a.caricaTelefonataDaDB();
 		caricaTelefonata(a);
 		//a.caricaAgenteDaDB();
@@ -79,14 +87,19 @@ public class EntityAppuntamento {
 		return ret;
 	}
 	
+	public int ottieniLatestID() {
+		int id=0;
+		DBTelefonata t = new DBTelefonata();
+		id=t.ottieniLatestID();
+		return id;
+	}
+	
 	public int referenziaInDB() {
 		int ret=0;
 		
 		DBAppuntamento a = new DBAppuntamento();
-		DBAppuntamento b = new DBAppuntamento();
-		b.setId(this.precedente.getId());
 		a.setId(this.id);
-		a.setPrecedente(b);
+		a.setPrecedente(this.precedente);
 		
 		ret = a.referenziaInDB();
 		
@@ -156,17 +169,22 @@ public class EntityAppuntamento {
 		this.agente = agente;
 	}
 
-	public EntityAppuntamento getPrecedente() {
+	public int getPrecedente() {
 		return precedente;
 	}
 
-	public void setPrecedente(EntityAppuntamento precedente) {
+	public void setPrecedente(int precedente) {
 		this.precedente = precedente;
 	}
 
 	@Override
 	public String toString() {
-		return "Appuntamento " + id + ": \ndata:" + data + ", \nora:" + ora + ", \nnote:" + note + ".\n\n";
+		String s = "Appuntamento " + id + ": \ndata: " + data + ", \nora: " + ora + ", \nnote: " + note + ", \ntelefonata: "+telefonata.getId();
+		if(this.precedente>0) {
+			s = s+"\nPRECEDENTE: "+precedente;
+		}
+		s=s+"\n\n";
+		return s;
 	}
 	
 	
