@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class Centralino {
 	
@@ -260,4 +262,15 @@ public class Centralino {
             return false;
         }
     }
+	
+	public static boolean isNumeroTelefonoValido(String numeroTelefono) {
+        // Definisci l'espressione regolare per un numero di telefono a 10 cifre
+        String regex = "^\\d{10}$";
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(numeroTelefono);
+
+        return matcher.matches();
+    }
+	
 }

@@ -100,13 +100,15 @@ public class AggiungiNumero extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int ret=0;
 				String numero = textField_1.getText();
-				if(!numero.isEmpty()) {
+				if(Centralino.isNumeroTelefonoValido(numero)) {
 					ret = Centralino.aggiungiNumero(Integer.parseInt(textField.getText()), numero);
 					if(ret>0) {
 						JOptionPane.showMessageDialog(btnNewButton, "Numero inserito correttamente nella lista "+textField.getText()+"!", "Plain Text", JOptionPane.PLAIN_MESSAGE);
 					} else {
 						JOptionPane.showMessageDialog(btnNewButton, "Numero non inserito!", "Error", JOptionPane.PLAIN_MESSAGE);
 					}
+				} else {
+					JOptionPane.showMessageDialog(btnNewButton, "Numero non valido!", "Error", JOptionPane.PLAIN_MESSAGE);
 				}
 			}
 		});

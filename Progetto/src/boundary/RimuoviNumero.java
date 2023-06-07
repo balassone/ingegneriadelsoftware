@@ -98,13 +98,15 @@ public class RimuoviNumero extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int ret=0;
 				String numero = textField_1.getText();
-				if(!numero.isEmpty()) {
+				if(Centralino.isNumeroTelefonoValido(numero)) {
 					ret = Centralino.rimuoviNumero(Integer.parseInt(textField.getText()), numero);
 					if(ret>0) {
 						JOptionPane.showMessageDialog(btnNewButton, "Numero rimosso correttamente dalla lista "+textField.getText()+"!", "Plain Text", JOptionPane.PLAIN_MESSAGE);
 					} else {
 						JOptionPane.showMessageDialog(btnNewButton, "Numero non rimosso!", "Error", JOptionPane.PLAIN_MESSAGE);
 					}
+				} else {
+					JOptionPane.showMessageDialog(btnNewButton, "Numero non valido!", "Error", JOptionPane.PLAIN_MESSAGE);
 				}
 			}
 		});
