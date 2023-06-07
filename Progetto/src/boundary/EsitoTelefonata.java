@@ -84,35 +84,33 @@ public class EsitoTelefonata extends JFrame {
 				//Controlli sull'input vanno fatti qui!
 				int ret=0;
 				String data = textField.getText();
-				if(data.isEmpty()) {
-					JOptionPane.showMessageDialog(btnNewButton, "Data Vuota", "Error", JOptionPane.PLAIN_MESSAGE);
-				}
 				String ora = textField_1.getText();
-				if(ora.isEmpty()) {
-					JOptionPane.showMessageDialog(btnNewButton, "Ora Vuota", "Error", JOptionPane.PLAIN_MESSAGE);
-				}
 				String note = textField_2.getText();
-				if(note.isEmpty()) {
-					JOptionPane.showMessageDialog(btnNewButton, "Note Vuote", "Error", JOptionPane.PLAIN_MESSAGE);
-				}
 				String esitos = textField_3.getText();
-				if(data.isEmpty()) {
-					JOptionPane.showMessageDialog(btnNewButton, "Esito Vuoto!", "Error", JOptionPane.PLAIN_MESSAGE);
-				}
 				int esito = Integer.parseInt(esitos);
-				
-				ret = Centralino.registraEsitoChiamata(data, ora, note, esito, 2);
-				
-				if(ret>0) {
-					JOptionPane.showMessageDialog(btnNewButton, "Telefonata inserita correttamente", "Plain Text", JOptionPane.PLAIN_MESSAGE);
+				if(data.isEmpty() || !Centralino.isDataValida(data)) {
+					JOptionPane.showMessageDialog(btnNewButton, "Data Non Valida", "Error", JOptionPane.PLAIN_MESSAGE);
+				} else if(ora.isEmpty() || !Centralino.isOraValida(ora)) {
+					JOptionPane.showMessageDialog(btnNewButton, "Ora Non Valida", "Error", JOptionPane.PLAIN_MESSAGE);
+				} else if(note.isEmpty()) {
+					JOptionPane.showMessageDialog(btnNewButton, "Note Vuote", "Error", JOptionPane.PLAIN_MESSAGE);
+				} else if(esitos.isEmpty()|| esito < 1 || esito > 5) {
+					JOptionPane.showMessageDialog(btnNewButton, "Esito Non Valido!", "Error", JOptionPane.PLAIN_MESSAGE);
 				} else {
-					JOptionPane.showMessageDialog(btnNewButton, "Telefonata non inserita", "Error", JOptionPane.PLAIN_MESSAGE);
-				}
+					
 				
-				if(esito==5) {
-					new CreaAppuntamento(ret).setVisible(true);
-				}
+					ret = Centralino.registraEsitoChiamata(data, ora, note, esito, 2);
 				
+					if(ret>0) {
+						JOptionPane.showMessageDialog(btnNewButton, "Telefonata inserita correttamente", "Plain Text", JOptionPane.PLAIN_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(btnNewButton, "Telefonata non inserita", "Error", JOptionPane.PLAIN_MESSAGE);
+					}
+				
+					if(esito==5) {
+						new CreaAppuntamento(ret).setVisible(true);
+					}
+				}
 			}
 		});
 		btnNewButton.setBounds(335, 227, 89, 23);

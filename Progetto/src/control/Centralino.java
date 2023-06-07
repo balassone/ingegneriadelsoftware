@@ -2,6 +2,9 @@ package control;
 
 import entity.*;
 import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
 public class Centralino {
 	
@@ -171,6 +174,7 @@ public class Centralino {
 	}
 	
 	public static int registraEsitoChiamata(String data, String ora, String note, int esito, int idCentralinista) {
+		
 		int ret=0;
 		
 		EntityTelefonata t = new EntityTelefonata();
@@ -188,7 +192,6 @@ public class Centralino {
 		if(ret>0) {
 			ret=id;
 		}
-		
 		return ret;
 	}
 	
@@ -206,6 +209,7 @@ public class Centralino {
 		a.setTelefonata(new EntityTelefonata(idTelefonata));
 		
 		ret = a.salvaInDB();
+		
 		
 		
 		return ret;
@@ -233,4 +237,27 @@ public class Centralino {
 		
 		return ret;
 	}
+	
+	public static boolean isDataValida(String dataStringa) {
+        DateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+        formatoData.setLenient(false); // Impedisce la conversione di date non valide
+
+        try {
+            formatoData.parse(dataStringa);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
+    }
+	public static boolean isOraValida(String oraStringa) {
+        DateFormat formatoOra = new SimpleDateFormat("HH:mm");
+        formatoOra.setLenient(false); // Impedisce la conversione di orari non validi
+
+        try {
+            formatoOra.parse(oraStringa);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
+    }
 }

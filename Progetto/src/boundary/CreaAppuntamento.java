@@ -90,28 +90,27 @@ public class CreaAppuntamento extends JFrame {
 				//Controlli sull'input vanno fatti qui!
 				int ret=0;
 				String data = textField.getText();
-				if(data.isEmpty()) {
-					JOptionPane.showMessageDialog(btnNewButton, "Data Vuota", "Error", JOptionPane.PLAIN_MESSAGE);
-				}
 				String ora = textField_1.getText();
-				if(ora.isEmpty()) {
-					JOptionPane.showMessageDialog(btnNewButton, "Ora Vuota", "Error", JOptionPane.PLAIN_MESSAGE);
-				}
 				String note = textField_2.getText();
 				String esitos = textField_3.getText();
-				if(data.isEmpty()) {
-					JOptionPane.showMessageDialog(btnNewButton, "Esito Vuoto!", "Error", JOptionPane.PLAIN_MESSAGE);
-				}
 				int esito = Integer.parseInt(esitos);
-				
-				ret = Centralino.creaAppuntamento(data, ora, note, esito, "ABCDEF00D11H123N",callID);
-				
-				if(ret>0) {
-					JOptionPane.showMessageDialog(btnNewButton, "Appuntamento inserito correttamente", "Plain Text", JOptionPane.PLAIN_MESSAGE);
+				if(data.isEmpty() || !Centralino.isDataValida(data)) {
+					JOptionPane.showMessageDialog(btnNewButton, "Data Non Valida", "Error", JOptionPane.PLAIN_MESSAGE);
+				} else if(ora.isEmpty() || !Centralino.isOraValida(ora)) {
+					JOptionPane.showMessageDialog(btnNewButton, "Ora Non Valida", "Error", JOptionPane.PLAIN_MESSAGE);
+				} else if(esitos.isEmpty() || esito<1 || esito>2) {
+					JOptionPane.showMessageDialog(btnNewButton, "Esito Non Valido!", "Error", JOptionPane.PLAIN_MESSAGE);
 				} else {
-					JOptionPane.showMessageDialog(btnNewButton, "Appuntamento non inserita", "Error", JOptionPane.PLAIN_MESSAGE);
-				}
+					
 				
+					ret = Centralino.creaAppuntamento(data, ora, note, esito, "ABCDEF00D11H123N",callID);
+				
+					if(ret>0) {
+						JOptionPane.showMessageDialog(btnNewButton, "Appuntamento inserito correttamente", "Plain Text", JOptionPane.PLAIN_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(btnNewButton, "Appuntamento non inserita", "Error", JOptionPane.PLAIN_MESSAGE);
+					}
+				}
 			}
 		});
 		btnNewButton.setBounds(335, 227, 89, 23);
