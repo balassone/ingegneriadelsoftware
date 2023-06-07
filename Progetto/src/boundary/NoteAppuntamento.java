@@ -86,11 +86,15 @@ public class NoteAppuntamento extends JFrame {
 				int ret=0;
 				String id = textField.getText();
 				String testo = editorPane.getText();
-				ret=Centralino.modificaNoteAppuntamento("ABCDEF00D11H123N", Integer.parseInt(id), testo);
-				if(ret>0) {
-					JOptionPane.showMessageDialog(btnNewButton, "Note dell'appuntamento "+id+" modificate con successo!", "Plain Text", JOptionPane.PLAIN_MESSAGE);
+				if(testo.isEmpty() || testo.length()>1000) {
+					JOptionPane.showMessageDialog(btnNewButton, "Note Non Valide", "Error", JOptionPane.PLAIN_MESSAGE);
 				} else {
-					JOptionPane.showMessageDialog(btnNewButton, "Note non modificate!", "Error", JOptionPane.PLAIN_MESSAGE);
+					ret=Centralino.modificaNoteAppuntamento("ABCDEF00D11H123N", Integer.parseInt(id), testo);
+					if(ret>0) {
+						JOptionPane.showMessageDialog(btnNewButton, "Note dell'appuntamento "+id+" modificate con successo!", "Plain Text", JOptionPane.PLAIN_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(btnNewButton, "Note non modificate!", "Error", JOptionPane.PLAIN_MESSAGE);
+					}
 				}
 			}
 		});

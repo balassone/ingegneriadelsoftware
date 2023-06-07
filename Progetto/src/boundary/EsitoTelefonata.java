@@ -92,8 +92,8 @@ public class EsitoTelefonata extends JFrame {
 					JOptionPane.showMessageDialog(btnNewButton, "Data Non Valida", "Error", JOptionPane.PLAIN_MESSAGE);
 				} else if(ora.isEmpty() || !Centralino.isOraValida(ora)) {
 					JOptionPane.showMessageDialog(btnNewButton, "Ora Non Valida", "Error", JOptionPane.PLAIN_MESSAGE);
-				} else if(note.isEmpty()) {
-					JOptionPane.showMessageDialog(btnNewButton, "Note Vuote", "Error", JOptionPane.PLAIN_MESSAGE);
+				} else if(note.isEmpty() || note.length()>1000) {
+					JOptionPane.showMessageDialog(btnNewButton, "Note Non Valide", "Error", JOptionPane.PLAIN_MESSAGE);
 				} else if(esitos.isEmpty()|| esito < 1 || esito > 5) {
 					JOptionPane.showMessageDialog(btnNewButton, "Esito Non Valido!", "Error", JOptionPane.PLAIN_MESSAGE);
 				} else {
