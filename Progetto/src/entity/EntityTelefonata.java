@@ -69,12 +69,14 @@ public class EntityTelefonata {
 		
 		return ret;
 	}
+	/*
 	public int ottieniLatestID() {
 		int id=0;
 		DBTelefonata t = new DBTelefonata();
 		id=t.ottieniLatestID();
 		return id;
-	}
+	
+*/
 	public int getId() {
 		return id;
 	}

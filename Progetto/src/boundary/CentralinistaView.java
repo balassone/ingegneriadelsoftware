@@ -6,7 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import control.Centralino;
+import control.Controller;
 import entity.EntityNumeroTelefonico;
 
 import javax.swing.JButton;
@@ -45,7 +45,7 @@ public class CentralinistaView extends JFrame {
 	 * Create the frame.
 	 */
 	public CentralinistaView() {
-		nums = Centralino.numeriDaChiamare(2);
+		nums = Controller.numeriDaChiamare(2);
 		i=0;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

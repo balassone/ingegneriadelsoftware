@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import control.Centralino;
+import control.Controller;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -88,9 +88,9 @@ public class EsitoTelefonata extends JFrame {
 				String note = textField_2.getText();
 				String esitos = textField_3.getText();
 				int esito = Integer.parseInt(esitos);
-				if(data.isEmpty() || !Centralino.isDataValida(data)) {
+				if(data.isEmpty() || !Controller.isDataValida(data)) {
 					JOptionPane.showMessageDialog(btnNewButton, "Data Non Valida", "Error", JOptionPane.PLAIN_MESSAGE);
-				} else if(ora.isEmpty() || !Centralino.isOraValida(ora)) {
+				} else if(ora.isEmpty() || !Controller.isOraValida(ora)) {
 					JOptionPane.showMessageDialog(btnNewButton, "Ora Non Valida", "Error", JOptionPane.PLAIN_MESSAGE);
 				} else if(note.isEmpty() || note.length()>1000) {
 					JOptionPane.showMessageDialog(btnNewButton, "Note Non Valide", "Error", JOptionPane.PLAIN_MESSAGE);
@@ -99,7 +99,7 @@ public class EsitoTelefonata extends JFrame {
 				} else {
 					
 				
-					ret = Centralino.registraEsitoChiamata(data, ora, note, esito, 2);
+					ret = Controller.registraEsitoChiamata(data, ora, note, esito, 2);
 				
 					if(ret>0) {
 						JOptionPane.showMessageDialog(btnNewButton, "Telefonata inserita correttamente", "Plain Text", JOptionPane.PLAIN_MESSAGE);

@@ -37,21 +37,22 @@ public class EntityGruppo {
 		EntityListaNumeriTelefonici l = new EntityListaNumeriTelefonici(g.getLista());
 		this.lista=l;
 	}
-	
+	/*
 	public int ottieniLatestID() {
 		int id=0;
 		DBGruppo g = new DBGruppo();
 		id = g.ottieniLatestId();
 		return id;
 	}
-	
+	*/
+	/*
 	public int trovaGruppo(int id) {
 		int ret=-1;
 		DBGruppo g = new DBGruppo();
 		ret = g.trovaGruppo(id);
 		return ret;
 	}
-	
+	*/
 	public int scriviSuDB(int id, String descrizione) {
 		int ret=0;
 		DBGruppo g = new DBGruppo();
@@ -68,12 +69,7 @@ public class EntityGruppo {
 		return ret;
 	}
 	
-	public boolean checkListaAssegnata(int id) {
-		boolean assegnata=true;
-		DBGruppo g = new DBGruppo();
-		assegnata = g.checkListaAssegnata(id);
-		return assegnata;
-	}
+	
 	
 	public int assegnaLista(int idLista, int idGruppo) {
 		int ret=0;

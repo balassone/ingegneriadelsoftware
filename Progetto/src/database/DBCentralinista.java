@@ -111,7 +111,7 @@ public class DBCentralinista {
 		}
 		return ret;
 	}
-	
+	/*
 	public int liberaTutti(int idGruppo) {
 		int ret=0;
 		String query = "UPDATE centralinisti SET gruppo=NULL WHERE gruppo='"+idGruppo+"';";
@@ -123,7 +123,7 @@ public class DBCentralinista {
 		}
 		return ret;
 	}
-
+	*/
 	public int getId() {
 		return id;
 	}

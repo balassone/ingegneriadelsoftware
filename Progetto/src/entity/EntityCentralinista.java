@@ -61,14 +61,14 @@ public class EntityCentralinista {
 		ret = c.assegnaGruppo(idGruppo, idCentralinista);
 		return ret;
 	}
-	
+	/*
 	public int liberaTutti(int idGruppo) {
 		int ret = 0;
 		DBCentralinista c = new DBCentralinista();
 		ret = c.liberaTutti(idGruppo);
 		return ret;
 	}
-	
+	*/
 	public int getId() {
 		return id;
 	}

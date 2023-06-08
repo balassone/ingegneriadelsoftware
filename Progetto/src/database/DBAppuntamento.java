@@ -45,6 +45,7 @@ public class DBAppuntamento {
 			e.printStackTrace();
 		}
 	}
+	/*
 	public int ottieniLatestID() {
 		int ret = 0;
 		
@@ -66,6 +67,7 @@ public class DBAppuntamento {
 		}
 		return ret;
 	}
+	*/
 	public void caricaTelefonataDaDB() {
 		String query = "SELECT * FROM telefonate WHERE id =(SELECT telefonata FROM appuntamenti WHERE idappuntamenti='"+this.id+"');";
 		try {
@@ -110,7 +112,7 @@ public class DBAppuntamento {
 		}
 		return ret;
 	}
-	
+	/*
 	public int trovaAppuntamento(int id) {
 		int ret = 0;
 		
@@ -132,7 +134,7 @@ public class DBAppuntamento {
 		}
 		return ret;
 	}
-	
+	*/
 	public int aggiornaSuDB() {
 		int ret=0;
 		String query = "UPDATE appuntamenti SET note='"+this.note+"' WHERE idappuntamenti='"+this.id+"';";

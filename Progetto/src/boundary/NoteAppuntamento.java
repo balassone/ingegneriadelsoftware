@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
-import control.Centralino;
+import control.Controller;
 import javax.swing.JEditorPane;
 
 public class NoteAppuntamento extends JFrame {
@@ -63,7 +63,7 @@ public class NoteAppuntamento extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String id = textField.getText();
 				if(!id.isEmpty()) {
-					editorPane.setText(Centralino.ottieniNoteAppuntamento("ABCDEF00D11H123N", Integer.parseInt(id)));
+					editorPane.setText(Controller.ottieniNoteAppuntamento("ABCDEF00D11H123N", Integer.parseInt(id)));
 				}
 			}
 		});
@@ -89,7 +89,7 @@ public class NoteAppuntamento extends JFrame {
 				if(testo.isEmpty() || testo.length()>1000) {
 					JOptionPane.showMessageDialog(btnNewButton, "Note Non Valide", "Error", JOptionPane.PLAIN_MESSAGE);
 				} else {
-					ret=Centralino.modificaNoteAppuntamento("ABCDEF00D11H123N", Integer.parseInt(id), testo);
+					ret=Controller.modificaNoteAppuntamento("ABCDEF00D11H123N", Integer.parseInt(id), testo);
 					if(ret>0) {
 						JOptionPane.showMessageDialog(btnNewButton, "Note dell'appuntamento "+id+" modificate con successo!", "Plain Text", JOptionPane.PLAIN_MESSAGE);
 					} else {

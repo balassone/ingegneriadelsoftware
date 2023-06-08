@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import control.Centralino;
+import control.Controller;
 import entity.EntityAppuntamento;
 
 import javax.swing.JTextField;
@@ -56,7 +56,7 @@ public class Appuntamenti extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String s = new String();
-				ArrayList<EntityAppuntamento> a = Centralino.ottieniAppuntamenti("ABCDEF00D11H123N");
+				ArrayList<EntityAppuntamento> a = Controller.ottieniAppuntamenti("ABCDEF00D11H123N");
 				for(int i=0; i<a.size(); i++) {
 					s=s+a.get(i).toString();
 				}

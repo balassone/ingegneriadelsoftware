@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
-import control.Centralino;
+import control.Controller;
 
 public class CreaAppuntamento extends JFrame {
 
@@ -94,9 +94,9 @@ public class CreaAppuntamento extends JFrame {
 				String note = textField_2.getText();
 				String esitos = textField_3.getText();
 				int esito = Integer.parseInt(esitos);
-				if(data.isEmpty() || !Centralino.isDataValida(data)) {
+				if(data.isEmpty() || !Controller.isDataValida(data)) {
 					JOptionPane.showMessageDialog(btnNewButton, "Data Non Valida", "Error", JOptionPane.PLAIN_MESSAGE);
-				} else if(ora.isEmpty() || !Centralino.isOraValida(ora)) {
+				} else if(ora.isEmpty() || !Controller.isOraValida(ora)) {
 					JOptionPane.showMessageDialog(btnNewButton, "Ora Non Valida", "Error", JOptionPane.PLAIN_MESSAGE);
 				} else if(note.isEmpty() || note.length()>1000){
 					JOptionPane.showMessageDialog(btnNewButton, "Note Non Valide", "Error", JOptionPane.PLAIN_MESSAGE);
@@ -105,7 +105,7 @@ public class CreaAppuntamento extends JFrame {
 				} else {
 					
 				
-					ret = Centralino.creaAppuntamento(data, ora, note, esito, "ABCDEF00D11H123N",callID);
+					ret = Controller.creaAppuntamento(data, ora, note, esito, "ABCDEF00D11H123N",callID);
 				
 					if(ret>0) {
 						JOptionPane.showMessageDialog(btnNewButton, "Appuntamento inserito correttamente", "Plain Text", JOptionPane.PLAIN_MESSAGE);

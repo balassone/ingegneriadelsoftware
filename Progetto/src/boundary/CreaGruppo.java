@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import control.Centralino;
+import control.Controller;
 
 public class CreaGruppo extends JFrame {
 
@@ -62,7 +62,7 @@ public class CreaGruppo extends JFrame {
 				int ret=0;
 				String text = textField.getText();
 				if(!text.isEmpty()) {
-					ret = Centralino.creaGruppo(text);
+					ret = Controller.creaGruppo(text);
 				}
 				
 				if(ret>0) {

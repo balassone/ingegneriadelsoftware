@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import control.Centralino;
+import control.*;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -68,7 +68,7 @@ public class AggiungiCentralinista extends JFrame {
 				String id = textField.getText();
 				
 				if(!id.isEmpty()) {
-					ret = Centralino.inserisciCentralinistaGruppo(idGruppo, Integer.parseInt(id));
+					ret = Controller.inserisciCentralinistaGruppo(idGruppo, Integer.parseInt(id));
 				}
 				
 				if(ret>0) {

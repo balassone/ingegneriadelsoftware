@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import control.Centralino;
+import control.*;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -71,7 +71,7 @@ public class AggiungiNumero extends JFrame {
 				int ret = 0;
 				String id = textField.getText();
 				if (!id.isEmpty()) {
-					ret = Centralino.trovaLista(Integer.parseInt(id));
+					ret = Controller.trovaLista(Integer.parseInt(id));
 					if (ret>0) {
 						textField_2.setText("Lista Trovata!");
 						textField_1.setEditable(true);
@@ -100,8 +100,8 @@ public class AggiungiNumero extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int ret=0;
 				String numero = textField_1.getText();
-				if(Centralino.isNumeroTelefonoValido(numero)) {
-					ret = Centralino.aggiungiNumero(Integer.parseInt(textField.getText()), numero);
+				if(Controller.isNumeroTelefonoValido(numero)) {
+					ret = Controller.aggiungiNumero(Integer.parseInt(textField.getText()), numero);
 					if(ret>0) {
 						JOptionPane.showMessageDialog(btnNewButton, "Numero inserito correttamente nella lista "+textField.getText()+"!", "Plain Text", JOptionPane.PLAIN_MESSAGE);
 					} else {

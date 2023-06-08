@@ -32,7 +32,7 @@ public class DBGruppo {
 			e.printStackTrace();
 		}
 	}
-	
+	/*
 	public int ottieniLatestId() {
 		int ret = 0;
 		
@@ -54,7 +54,7 @@ public class DBGruppo {
 		}
 		return ret;
 	}
-	
+	*/
 	public void caricaCentralinistiDaDB() {
 		String query = "SELECT * FROM centralinisti WHERE gruppo='"+this.id+"';";
 		try {
@@ -105,7 +105,7 @@ public class DBGruppo {
 		
 		return ret;
 	}
-	
+	/*
 	public int trovaGruppo(int id) {
 		int ret = 0;
 		
@@ -127,7 +127,7 @@ public class DBGruppo {
 		}
 		return ret;
 	}
-	
+	*/
 	public int rimuoviDaDB(int id) {
 		int ret = 0;
 		
@@ -145,7 +145,7 @@ public class DBGruppo {
 		
 		return ret;
 	}
-	
+	/*
 	public boolean checkListaAssegnata(int idLista) {
 		boolean check = true;
 		
@@ -162,7 +162,7 @@ public class DBGruppo {
 		
 		return check;
 	}
-	
+	*/
 	public int assegnaLista(int idLista, int idGruppo) {
 		int ret=0;
 		

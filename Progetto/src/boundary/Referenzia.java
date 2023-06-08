@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import control.Centralino;
+import control.Controller;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -86,7 +86,7 @@ public class Referenzia extends JFrame {
 				int ret = 0;
 				String id = textField.getText();
 				if (!id.isEmpty()) {
-					ret = Centralino.trovaAppuntamento(Integer.parseInt(id));
+					ret = Controller.trovaAppuntamento(Integer.parseInt(id));
 					if (ret>0) {
 						textField_2.setText("Vecchio Trovato!");
 						textField_1.setEditable(true);
@@ -106,7 +106,7 @@ public class Referenzia extends JFrame {
 				int ret = 0;
 				String vecchio = textField.getText();
 				String nuovo = textField_1.getText();
-				ret = Centralino.referenziaAppuntamento(Integer.parseInt(vecchio), Integer.parseInt(nuovo));
+				ret = Controller.referenziaAppuntamento(Integer.parseInt(vecchio), Integer.parseInt(nuovo));
 				if(ret>0) {
 					JOptionPane.showMessageDialog(btnNewButton, "Appuntamento "+vecchio+" assegnato correttamente al nuovo appuntamento "+nuovo+"!", "Plain Text", JOptionPane.PLAIN_MESSAGE);
 				} else {
@@ -123,7 +123,7 @@ public class Referenzia extends JFrame {
 				int ret = 0;
 				String id = textField_1.getText();
 				if (!id.isEmpty()) {
-					ret = Centralino.trovaAppuntamento(Integer.parseInt(id));
+					ret = Controller.trovaAppuntamento(Integer.parseInt(id));
 					if (ret>0) {
 						textField_3.setText("Nuovo Trovato!");
 						

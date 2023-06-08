@@ -88,7 +88,7 @@ public class DBListaNumeriTelefonici {
 		
 		return ret;
 	}
-	
+	/*
 	public int trovaLista(int id) {
 		int ret = 0;
 		
@@ -110,7 +110,8 @@ public class DBListaNumeriTelefonici {
 		}
 		return ret;
 	}
-	
+	*/
+	/*
 	public int ottieniLatestId() {
 		int ret = 0;
 		
@@ -132,7 +133,7 @@ public class DBListaNumeriTelefonici {
 		}
 		return ret;
 	}
-
+	*/
 	
 	public int getId() {
 		return id;

@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import control.Centralino;
+import control.Controller;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -54,8 +54,8 @@ public class RimuoviGruppo extends JFrame {
 				int ret = 0;
 				String gruppo = textField.getText();
 				if(!gruppo.isEmpty()) {
-					if(Centralino.trovaGruppo(Integer.parseInt(gruppo))>0) {
-						ret = Centralino.rimuoviGruppo(Integer.parseInt(gruppo));
+					if(Controller.trovaGruppo(Integer.parseInt(gruppo))>0) {
+						ret = Controller.rimuoviGruppo(Integer.parseInt(gruppo));
 						if(ret>0) {
 							JOptionPane.showMessageDialog(btnNewButton, "Gruppo rimosso correttamente!", "Plain Text", JOptionPane.PLAIN_MESSAGE);
 						} else {

@@ -52,6 +52,7 @@ public class DBTelefonata {
 			e.printStackTrace();
 		}
 	}
+	/*
 	public int ottieniLatestID() {
 		int ret = 0;
 		
@@ -73,6 +74,7 @@ public class DBTelefonata {
 		}
 		return ret;
 	}
+	*/
 	public void caricaAppuntamentoDaDB() {
 		String query = "SELECT * FROM appuntamenti WHERE telefonata='"+this.id+"';";
 		try {

@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import control.Centralino;
+import control.Controller;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -86,7 +86,7 @@ public class AssegnaListaGruppo extends JFrame {
 				int ret = 0;
 				String id = textField.getText();
 				if (!id.isEmpty()) {
-					ret = Centralino.trovaLista(Integer.parseInt(id));
+					ret = Controller.trovaLista(Integer.parseInt(id));
 					if (ret>0) {
 						textField_2.setText("Lista Trovata!");
 						textField_1.setEditable(true);
@@ -106,7 +106,7 @@ public class AssegnaListaGruppo extends JFrame {
 				int ret = 0;
 				String lista = textField.getText();
 				String gruppo = textField_1.getText();
-				ret = Centralino.assegnaListaGruppo(Integer.parseInt(lista), Integer.parseInt(gruppo));
+				ret = Controller.assegnaListaGruppo(Integer.parseInt(lista), Integer.parseInt(gruppo));
 				if(ret>0) {
 					JOptionPane.showMessageDialog(btnNewButton, "Lista "+lista+" assegnata correttamente al gruppo "+gruppo+"!", "Plain Text", JOptionPane.PLAIN_MESSAGE);
 				} else {
@@ -123,7 +123,7 @@ public class AssegnaListaGruppo extends JFrame {
 				int ret = 0;
 				String id = textField_1.getText();
 				if (!id.isEmpty()) {
-					ret = Centralino.trovaGruppo(Integer.parseInt(id));
+					ret = Controller.trovaGruppo(Integer.parseInt(id));
 					if (ret>0) {
 						textField_3.setText("Gruppo Trovato!");
 						

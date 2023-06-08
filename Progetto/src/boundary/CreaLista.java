@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import control.Centralino;
+import control.Controller;
 public class CreaLista extends JFrame {
 
 	private JPanel contentPane;
@@ -60,7 +60,7 @@ public class CreaLista extends JFrame {
 				int ret=0;
 				String text = textField.getText();
 				if(!text.isEmpty()) {
-					ret = Centralino.creaLista(text);
+					ret = Controller.creaLista(text);
 				}
 				
 				if(ret>0) {

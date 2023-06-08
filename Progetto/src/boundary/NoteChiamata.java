@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import control.Centralino;
+import control.Controller;
 
 import javax.swing.JTextPane;
 import javax.swing.JTextField;
@@ -62,7 +62,7 @@ public class NoteChiamata extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String id = textField.getText();
 				if(!id.isEmpty()) {
-					textPane.setText(Centralino.visualizzaNoteChiamata("ABCDEF00D11H123N", Integer.parseInt(id)));
+					textPane.setText(Controller.visualizzaNoteChiamata("ABCDEF00D11H123N", Integer.parseInt(id)));
 				}
 			}
 		});

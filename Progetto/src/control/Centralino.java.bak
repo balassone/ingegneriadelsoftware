@@ -12,16 +12,22 @@ public class Centralino {
 	
 	public static int trovaLista(int id) {
 		int ret=0;
-		EntityListaNumeriTelefonici l = new EntityListaNumeriTelefonici();
-		ret = l.trovaLista(id);
+		//EntityListaNumeriTelefonici l = new EntityListaNumeriTelefonici();
+		//ret = l.trovaLista(id);
+		EntityCentralino c = new EntityCentralino();
+		ret = c.trovaLista(id);
 		return ret;
 		
 	}
 	
 	public static int creaLista(String nome) {
 		int ret=-1;
+		//EntityListaNumeriTelefonici lista = new EntityListaNumeriTelefonici();
+		//int id=lista.ottieniLatestID();
+		
+		EntityCentralino c = new EntityCentralino();
+		int id = c.ottieniLatestIDLista();
 		EntityListaNumeriTelefonici lista = new EntityListaNumeriTelefonici();
-		int id=lista.ottieniLatestID();
 		ret = lista.ScriviSuDB(id, nome);
 		if(ret!=-1) {
 			lista.setId(id);
@@ -63,16 +69,24 @@ public class Centralino {
 	
 	public static int trovaGruppo(int id) {
 		int ret=0;
-		EntityGruppo g = new EntityGruppo();
-		ret = g.trovaGruppo(id);
+		//EntityGruppo g = new EntityGruppo();
+		//ret = g.trovaGruppo(id);
+		
+		EntityCentralino c = new EntityCentralino();
+		ret = c.trovaGruppo(id);
+		
 		return ret;
 	}
 	
 	public static int creaGruppo(String descrizione) {
 		int ret=0;
 		int id=0;
+		
+		EntityCentralino c = new EntityCentralino();
+		id = c.ottieniLatestIDGruppo();
+		
 		EntityGruppo g = new EntityGruppo();
-		id = g.ottieniLatestID();
+		
 		ret = g.scriviSuDB(id,descrizione);
 		if(ret>0) {
 			ret=id;
@@ -89,14 +103,11 @@ public class Centralino {
 	
 	public static int rimuoviGruppo(int id) {
 		int ret=0;
-		if(trovaGruppo(id)>0) { //Necessario?
-			EntityCentralinista c = new EntityCentralinista();
-			if(c.liberaTutti(id)>0) {
-				EntityGruppo g = new EntityGruppo();
-				ret = g.rimuoviDaDB(id);
-			}
-		} else {
-			System.out.println("Gruppo Non Trovato!");
+		
+		EntityCentralino c = new EntityCentralino();
+		if(c.liberaTutti(id)>0) {
+			EntityGruppo g = new EntityGruppo();
+			ret = g.rimuoviDaDB(id);
 		}
 		
 		return ret;
@@ -104,8 +115,9 @@ public class Centralino {
 	
 	public static int assegnaListaGruppo(int idLista, int idGruppo) {
 		int ret=0;
+		EntityCentralino c = new EntityCentralino();
 		EntityGruppo g = new EntityGruppo();
-		if(!(g.checkListaAssegnata(idLista))) {
+		if(!(c.checkListaAssegnata(idLista))) {
 			ret=g.assegnaLista(idLista, idGruppo);
 		} else {
 			System.out.println("Lista già assegnata!");
@@ -178,16 +190,16 @@ public class Centralino {
 	public static int registraEsitoChiamata(String data, String ora, String note, int esito, int idCentralinista) {
 		
 		int ret=0;
-		
+		EntityCentralino c = new EntityCentralino();
+		int id = c.ottieniLatestIDTelefonata();
 		EntityTelefonata t = new EntityTelefonata();
-		int id = t.ottieniLatestID();
 		t.setId(id);
 		t.setData(data);
 		t.setOra(ora);
 		t.setNote(note);
 		t.setEsito(esito);
-		EntityCentralinista c = new EntityCentralinista(idCentralinista);
-		t.setCentralinista(c);
+		EntityCentralinista ce = new EntityCentralinista(idCentralinista);
+		t.setCentralinista(ce);
 		
 		ret = t.salvaInDB();
 		
@@ -199,9 +211,9 @@ public class Centralino {
 	
 	public static int creaAppuntamento(String data, String ora, String note, int esito, String agente, int idTelefonata) {
 		int ret=0;
-		
+		EntityCentralino c = new EntityCentralino();
+		int id = c.ottieniLatestIDAppuntamento();
 		EntityAppuntamento a = new EntityAppuntamento();
-		int id = a.ottieniLatestID();
 		a.setId(id);
 		a.setData(data);
 		a.setOra(ora);
@@ -220,8 +232,11 @@ public class Centralino {
 	public static int trovaAppuntamento(int id) {
 		int ret=0;
 		
-		EntityAppuntamento a = new EntityAppuntamento();
-		ret = a.trovaAppuntamento(id);
+		//EntityAppuntamento a = new EntityAppuntamento();
+		//ret = a.trovaAppuntamento(id);
+		
+		EntityCentralino c = new EntityCentralino();
+		ret = c.trovaAppuntamento(id);
 		
 		return ret;
 	}
@@ -229,8 +244,6 @@ public class Centralino {
 	public static int referenziaAppuntamento(int idVecchio, int idNuovo) {
 		int ret=0;
 		
-		
-		System.out.println("Trovati entrambi!");
 		EntityAppuntamento a = new EntityAppuntamento(idNuovo);
 		a.setPrecedente(idVecchio);
 				
