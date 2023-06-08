@@ -89,7 +89,7 @@ public class Centralino {
 	
 	public static int rimuoviGruppo(int id) {
 		int ret=0;
-		if(trovaGruppo(id)>0) {
+		if(trovaGruppo(id)>0) { //Necessario?
 			EntityCentralinista c = new EntityCentralinista();
 			if(c.liberaTutti(id)>0) {
 				EntityGruppo g = new EntityGruppo();
