@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import control.Controller;
+import exceptions.DataNonValida;
+import exceptions.OraNonValida;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -81,35 +83,37 @@ public class EsitoTelefonata extends JFrame {
 		JButton btnNewButton = new JButton("Registra");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Controlli sull'input vanno fatti qui!
 				int ret=0;
 				String data = textField.getText();
 				String ora = textField_1.getText();
 				String note = textField_2.getText();
 				String esitos = textField_3.getText();
 				int esito = Integer.parseInt(esitos);
-				if(data.isEmpty() || !Controller.isDataValida(data)) {
+				
+				try {
+					Controller.isDataValida(data);
+					try {
+						Controller.isOraValida(ora);
+						if(note.isEmpty() || note.length()>1000) {
+							JOptionPane.showMessageDialog(btnNewButton, "Note Non Valide", "Error", JOptionPane.PLAIN_MESSAGE);
+						} else if(esitos.isEmpty()|| esito < 1 || esito > 5) {
+							JOptionPane.showMessageDialog(btnNewButton, "Esito Non Valido!", "Error", JOptionPane.PLAIN_MESSAGE);
+						} else {
+							ret = Controller.registraEsitoChiamata(data, ora, note, esito, 2);
+							if(ret>0) {
+								JOptionPane.showMessageDialog(btnNewButton, "Telefonata inserita correttamente con id="+ret, "Plain Text", JOptionPane.PLAIN_MESSAGE);
+							} else {
+								JOptionPane.showMessageDialog(btnNewButton, "Telefonata non inserita", "Error", JOptionPane.PLAIN_MESSAGE);
+							}
+							if(esito==5) {
+								new CreaAppuntamento(ret).setVisible(true);
+							}
+						}
+					} catch (OraNonValida ex) {
+						JOptionPane.showMessageDialog(btnNewButton, "Ora Non Valida", "Error", JOptionPane.PLAIN_MESSAGE);
+					}	
+				} catch (DataNonValida ex) {
 					JOptionPane.showMessageDialog(btnNewButton, "Data Non Valida", "Error", JOptionPane.PLAIN_MESSAGE);
-				} else if(ora.isEmpty() || !Controller.isOraValida(ora)) {
-					JOptionPane.showMessageDialog(btnNewButton, "Ora Non Valida", "Error", JOptionPane.PLAIN_MESSAGE);
-				} else if(note.isEmpty() || note.length()>1000) {
-					JOptionPane.showMessageDialog(btnNewButton, "Note Non Valide", "Error", JOptionPane.PLAIN_MESSAGE);
-				} else if(esitos.isEmpty()|| esito < 1 || esito > 5) {
-					JOptionPane.showMessageDialog(btnNewButton, "Esito Non Valido!", "Error", JOptionPane.PLAIN_MESSAGE);
-				} else {
-					
-				
-					ret = Controller.registraEsitoChiamata(data, ora, note, esito, 2);
-				
-					if(ret>0) {
-						JOptionPane.showMessageDialog(btnNewButton, "Telefonata inserita correttamente con id="+ret, "Plain Text", JOptionPane.PLAIN_MESSAGE);
-					} else {
-						JOptionPane.showMessageDialog(btnNewButton, "Telefonata non inserita", "Error", JOptionPane.PLAIN_MESSAGE);
-					}
-				
-					if(esito==5) {
-						new CreaAppuntamento(ret).setVisible(true);
-					}
 				}
 			}
 		});

@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import control.Controller;
+import exceptions.GruppoNonTrovato;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -54,16 +55,16 @@ public class RimuoviGruppo extends JFrame {
 				int ret = 0;
 				String gruppo = textField.getText();
 				if(!gruppo.isEmpty()) {
-					if(Controller.trovaGruppo(Integer.parseInt(gruppo))>0) {
+					try {
+						Controller.trovaGruppo(Integer.parseInt(gruppo));
 						ret = Controller.rimuoviGruppo(Integer.parseInt(gruppo));
 						if(ret>0) {
 							JOptionPane.showMessageDialog(btnNewButton, "Gruppo rimosso correttamente!", "Plain Text", JOptionPane.PLAIN_MESSAGE);
-						} else {
-							JOptionPane.showMessageDialog(btnNewButton, "Gruppo non rimosso!", "Error", JOptionPane.PLAIN_MESSAGE);
 						}
+					} catch (GruppoNonTrovato ex) {
+						JOptionPane.showMessageDialog(btnNewButton, "Gruppo non trovato!", "Error", JOptionPane.PLAIN_MESSAGE);
 					}
 				}
-				
 			}
 		});
 		btnNewButton.setBounds(161, 131, 89, 23);

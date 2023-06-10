@@ -68,6 +68,7 @@ public class CentralinistaView extends JFrame {
 		textField.setBounds(242, 44, 130, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
+		textField.setEditable(false);
 		
 		JLabel lblNewLabel = new JLabel("Centralinista");
 		lblNewLabel.setBounds(10, 11, 94, 14);

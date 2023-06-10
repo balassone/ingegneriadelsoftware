@@ -16,6 +16,8 @@ import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
 import control.Controller;
+import exceptions.DataNonValida;
+import exceptions.OraNonValida;
 
 public class CreaAppuntamento extends JFrame {
 
@@ -95,24 +97,31 @@ public class CreaAppuntamento extends JFrame {
 				String note = textField_2.getText();
 				String esitos = textField_3.getText();
 				int esito = Integer.parseInt(esitos);
-				if(data.isEmpty() || !Controller.isDataValida(data)) {
-					JOptionPane.showMessageDialog(btnNewButton, "Data Non Valida", "Error", JOptionPane.PLAIN_MESSAGE);
-				} else if(ora.isEmpty() || !Controller.isOraValida(ora)) {
-					JOptionPane.showMessageDialog(btnNewButton, "Ora Non Valida", "Error", JOptionPane.PLAIN_MESSAGE);
-				} else if(note.isEmpty() || note.length()>1000){
-					JOptionPane.showMessageDialog(btnNewButton, "Note Non Valide", "Error", JOptionPane.PLAIN_MESSAGE);
-				} else if(esitos.isEmpty() || esito<0 || esito>1) {
-					JOptionPane.showMessageDialog(btnNewButton, "Esito Non Valido!", "Error", JOptionPane.PLAIN_MESSAGE);
-				} else {
-					
 				
-					ret = Controller.creaAppuntamento(data, ora, note, esito, "ABCDEF00D11H123N",callID);
 				
-					if(ret>0) {
-						JOptionPane.showMessageDialog(btnNewButton, "Appuntamento inserito correttamente con id="+ret, "Plain Text", JOptionPane.PLAIN_MESSAGE);
-					} else {
-						JOptionPane.showMessageDialog(btnNewButton, "Appuntamento non inserita", "Error", JOptionPane.PLAIN_MESSAGE);
+				try {
+					Controller.isDataValida(data);
+					try {
+						Controller.isOraValida(ora);
+						
+						if(note.isEmpty() || note.length()>1000){
+							JOptionPane.showMessageDialog(btnNewButton, "Note Non Valide", "Error", JOptionPane.PLAIN_MESSAGE);
+						} else if(esitos.isEmpty() || esito<0 || esito>1) {
+							JOptionPane.showMessageDialog(btnNewButton, "Esito Non Valido!", "Error", JOptionPane.PLAIN_MESSAGE);
+						} else {
+							ret = Controller.creaAppuntamento(data, ora, note, esito, "ABCDEF00D11H123N",callID);
+							if(ret>0) {
+								JOptionPane.showMessageDialog(btnNewButton, "Appuntamento inserito correttamente con id="+ret, "Plain Text", JOptionPane.PLAIN_MESSAGE);
+							} else {
+								JOptionPane.showMessageDialog(btnNewButton, "Appuntamento non inserita", "Error", JOptionPane.PLAIN_MESSAGE);
+							}
+						}
+						
+					} catch (OraNonValida ex) {
+						JOptionPane.showMessageDialog(btnNewButton, "Ora Non Valida", "Error", JOptionPane.PLAIN_MESSAGE);
 					}
+				} catch (DataNonValida ex) {
+					JOptionPane.showMessageDialog(btnNewButton, "Data Non Valida", "Error", JOptionPane.PLAIN_MESSAGE);
 				}
 			}
 		});

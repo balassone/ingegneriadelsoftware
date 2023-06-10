@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import control.*;
+import exceptions.ListaNonTrovata;
+import exceptions.NumeroNonValido;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -68,18 +70,17 @@ public class AggiungiNumero extends JFrame {
 		JButton btnNewButton = new JButton("Check Lista");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int ret = 0;
 				String id = textField.getText();
 				if (!id.isEmpty()) {
-					ret = Controller.trovaLista(Integer.parseInt(id));
-					if (ret>0) {
+					try {
+						Controller.trovaLista(Integer.parseInt(id));
 						textField_2.setText("Lista Trovata!");
 						textField_1.setEditable(true);
-						
-					} else {
+					} catch(ListaNonTrovata l) {
 						textField_2.setText("Lista Non Trovata!");
 						textField_1.setEditable(false);
 					}
+					
 				}
 			}
 		});
@@ -100,14 +101,15 @@ public class AggiungiNumero extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int ret=0;
 				String numero = textField_1.getText();
-				if(Controller.isNumeroTelefonoValido(numero)) {
+				try {
+					Controller.isNumeroTelefonoValido(numero);
 					ret = Controller.aggiungiNumero(Integer.parseInt(textField.getText()), numero);
 					if(ret>0) {
 						JOptionPane.showMessageDialog(btnNewButton, "Numero inserito correttamente nella lista "+textField.getText()+"!", "Plain Text", JOptionPane.PLAIN_MESSAGE);
 					} else {
 						JOptionPane.showMessageDialog(btnNewButton, "Numero non inserito!", "Error", JOptionPane.PLAIN_MESSAGE);
 					}
-				} else {
+				} catch (NumeroNonValido l) {
 					JOptionPane.showMessageDialog(btnNewButton, "Numero non valido!", "Error", JOptionPane.PLAIN_MESSAGE);
 				}
 			}

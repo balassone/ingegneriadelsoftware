@@ -7,15 +7,18 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-
+import exceptions.*;
 public class Controller {
 	
-	public static int trovaLista(int id) {
+	public static int trovaLista(int id) throws ListaNonTrovata{
 		int ret=0;
 		//EntityListaNumeriTelefonici l = new EntityListaNumeriTelefonici();
 		//ret = l.trovaLista(id);
 		EntityCentralino c = new EntityCentralino();
 		ret = c.trovaLista(id);
+		if(!(ret>0)) {
+			throw new ListaNonTrovata();
+		}
 		return ret;
 		
 	}
@@ -29,9 +32,9 @@ public class Controller {
 		int id = c.ottieniLatestIDLista();
 		EntityListaNumeriTelefonici lista = new EntityListaNumeriTelefonici();
 		ret = lista.ScriviSuDB(id, nome);
-		if(ret!=-1) {
-			lista.setId(id);
-			lista.setNome(nome);
+		if(ret>0) {
+			//lista.setId(id);
+			//lista.setNome(nome);
 			ret=id;
 		}
 		return ret;
@@ -67,14 +70,16 @@ public class Controller {
 		return ret;
 	}
 	
-	public static int trovaGruppo(int id) {
+	public static int trovaGruppo(int id) throws GruppoNonTrovato{
 		int ret=0;
 		//EntityGruppo g = new EntityGruppo();
 		//ret = g.trovaGruppo(id);
 		
 		EntityCentralino c = new EntityCentralino();
 		ret = c.trovaGruppo(id);
-		
+		if(!(ret>0)) {
+			throw new GruppoNonTrovato();
+		}
 		return ret;
 	}
 	
@@ -260,7 +265,7 @@ public class Controller {
 		return ret;
 	}
 	
-	public static boolean isDataValida(String dataStringa) {
+	public static boolean isDataValida(String dataStringa) throws DataNonValida{
         DateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
         formatoData.setLenient(false); // Impedisce la conversione di date non valide
 
@@ -268,10 +273,10 @@ public class Controller {
             formatoData.parse(dataStringa);
             return true;
         } catch (ParseException e) {
-            return false;
+            throw new DataNonValida();
         }
     }
-	public static boolean isOraValida(String oraStringa) {
+	public static boolean isOraValida(String oraStringa) throws OraNonValida {
         DateFormat formatoOra = new SimpleDateFormat("HH:mm");
         formatoOra.setLenient(false); // Impedisce la conversione di orari non validi
 
@@ -279,18 +284,22 @@ public class Controller {
             formatoOra.parse(oraStringa);
             return true;
         } catch (ParseException e) {
-            return false;
+            throw new OraNonValida();
         }
     }
 	
-	public static boolean isNumeroTelefonoValido(String numeroTelefono) {
+	public static boolean isNumeroTelefonoValido(String numeroTelefono) throws NumeroNonValido{
         // Definisci l'espressione regolare per un numero di telefono a 10 cifre
         String regex = "^\\d{10}$";
 
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(numeroTelefono);
 
-        return matcher.matches();
+        if(matcher.matches()) {
+        	return true;
+        } else {
+        	throw new NumeroNonValido();
+        }
     }
 	
 }

@@ -46,9 +46,7 @@ public class EntityNumeroTelefonico {
 	}
 
 	public void setNumero(String numero) {
-		if(numero.length()==10) {
-			this.numero = numero;
-		}
+		this.numero = numero;
 	}
 
 	public EntityListaNumeriTelefonici getLista() {

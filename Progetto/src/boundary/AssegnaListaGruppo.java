@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import control.Controller;
+import exceptions.GruppoNonTrovato;
+import exceptions.ListaNonTrovata;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -83,15 +85,13 @@ public class AssegnaListaGruppo extends JFrame {
 		JButton btnNewButton = new JButton("Check Lista");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int ret = 0;
 				String id = textField.getText();
 				if (!id.isEmpty()) {
-					ret = Controller.trovaLista(Integer.parseInt(id));
-					if (ret>0) {
+					try {
+						Controller.trovaLista(Integer.parseInt(id));
 						textField_2.setText("Lista Trovata!");
 						textField_1.setEditable(true);
-						
-					} else {
+					} catch (ListaNonTrovata ex) {
 						textField_2.setText("Lista Non Trovata!");
 						textField_1.setEditable(false);
 					}
@@ -122,14 +122,12 @@ public class AssegnaListaGruppo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int ret = 0;
 				String id = textField_1.getText();
-				if (!id.isEmpty()) {
-					ret = Controller.trovaGruppo(Integer.parseInt(id));
-					if (ret>0) {
+				if(!id.isEmpty()) {
+					try {
+						Controller.trovaGruppo(Integer.parseInt(id));
 						textField_3.setText("Gruppo Trovato!");
-						
-					} else {
+					} catch (GruppoNonTrovato ex) {
 						textField_3.setText("Gruppo Non Trovato!");
-						
 					}
 				}
 			}

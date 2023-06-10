@@ -35,6 +35,15 @@ public class AdminView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
+	/*
+	 * AdminView consiste in una finestra dotata di 3 pulsanti, a seconda di chi utilizzerà il sistema.
+	 * 
+	 * Si assume che il centralinista che si logga sia il Centralinista con ID=2;
+	 * Si assume che l'agente di vendita che si logga sia l'Agente con CF="ABCDEF00D11H123N"
+	 * 
+	 * */
+	
 	public AdminView() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

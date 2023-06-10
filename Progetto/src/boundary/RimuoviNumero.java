@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import control.Controller;
+import exceptions.ListaNonTrovata;
+import exceptions.NumeroNonValido;
 
 public class RimuoviNumero extends JFrame {
 
@@ -66,15 +68,13 @@ public class RimuoviNumero extends JFrame {
 		JButton btnNewButton = new JButton("Check Lista");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int ret = 0;
 				String id = textField.getText();
 				if (!id.isEmpty()) {
-					ret = Controller.trovaLista(Integer.parseInt(id));
-					if (ret>0) {
+					try {
+						Controller.trovaLista(Integer.parseInt(id));
 						textField_2.setText("Lista Trovata!");
 						textField_1.setEditable(true);
-						
-					} else {
+					} catch (ListaNonTrovata ex) {
 						textField_2.setText("Lista Non Trovata!");
 						textField_1.setEditable(false);
 					}
@@ -97,15 +97,16 @@ public class RimuoviNumero extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int ret=0;
-				String numero = textField_1.getText();
-				if(Controller.isNumeroTelefonoValido(numero)) {
+				String numero = textField_1.getText();	
+				try {
+					Controller.isNumeroTelefonoValido(numero);
 					ret = Controller.rimuoviNumero(Integer.parseInt(textField.getText()), numero);
 					if(ret>0) {
 						JOptionPane.showMessageDialog(btnNewButton, "Numero rimosso correttamente dalla lista "+textField.getText()+"!", "Plain Text", JOptionPane.PLAIN_MESSAGE);
 					} else {
 						JOptionPane.showMessageDialog(btnNewButton, "Numero non rimosso!", "Error", JOptionPane.PLAIN_MESSAGE);
 					}
-				} else {
+				} catch (NumeroNonValido ex) {
 					JOptionPane.showMessageDialog(btnNewButton, "Numero non valido!", "Error", JOptionPane.PLAIN_MESSAGE);
 				}
 			}
