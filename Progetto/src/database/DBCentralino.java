@@ -197,6 +197,46 @@ public class DBCentralino {
 		}
 		return ret;
 	}
+
+	public ArrayList<DBGruppo> getGruppi() {
+		return gruppi;
+	}
+
+	public void setGruppi(ArrayList<DBGruppo> gruppi) {
+		this.gruppi = gruppi;
+	}
+
+	public ArrayList<DBListaNumeriTelefonici> getListe() {
+		return liste;
+	}
+
+	public void setListe(ArrayList<DBListaNumeriTelefonici> liste) {
+		this.liste = liste;
+	}
+
+	public ArrayList<DBCentralinista> getCentralinisti() {
+		return centralinisti;
+	}
+
+	public void setCentralinisti(ArrayList<DBCentralinista> centralinisti) {
+		this.centralinisti = centralinisti;
+	}
+
+	public ArrayList<DBAppuntamento> getAppuntamenti() {
+		return appuntamenti;
+	}
+
+	public void setAppuntamenti(ArrayList<DBAppuntamento> appuntamenti) {
+		this.appuntamenti = appuntamenti;
+	}
+
+	public ArrayList<DBTelefonata> getTelefonate() {
+		return telefonate;
+	}
+
+	public void setTelefonate(ArrayList<DBTelefonata> telefonate) {
+		this.telefonate = telefonate;
+	}
 	
 	
 	
