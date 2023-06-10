@@ -132,7 +132,8 @@ public class Controller {
 	}
 	
 	public static String visualizzaNoteChiamata(String cf, int idChiamata) {
-		ArrayList<EntityAppuntamento> l = ottieniAppuntamenti(cf);
+		EntityAgentediVendita a = new EntityAgentediVendita(cf);
+		ArrayList<EntityAppuntamento> l = a.getAppuntamenti();
 		for(int i=0; i<l.size(); i++) {
 			if(l.get(i).getTelefonata().getId()==idChiamata) {
 				return l.get(i).getTelefonata().getNote();
@@ -143,8 +144,8 @@ public class Controller {
 	
 	
 	public static String visualizzaDettagliAppuntamento(String cf, int idAppuntamento) {
-		
-		ArrayList<EntityAppuntamento> l = ottieniAppuntamenti(cf);
+		EntityAgentediVendita a = new EntityAgentediVendita(cf);
+		ArrayList<EntityAppuntamento> l = a.getAppuntamenti();
 		for(int i=0; i<l.size(); i++) {
 			if(l.get(i).getId()==idAppuntamento) {
 				return l.get(i).toString();
@@ -156,7 +157,8 @@ public class Controller {
 	
 	public static String ottieniNoteAppuntamento(String cf, int idAppuntamento) {
 		String s="";
-		ArrayList<EntityAppuntamento> l = ottieniAppuntamenti(cf);
+		EntityAgentediVendita a = new EntityAgentediVendita(cf);
+		ArrayList<EntityAppuntamento> l = a.getAppuntamenti();
 		for(int i=0; i<l.size(); i++) {
 			if(l.get(i).getId()==idAppuntamento) {
 				s = l.get(i).getNote();
@@ -167,8 +169,8 @@ public class Controller {
 	
 	public static int modificaNoteAppuntamento(String cf, int idAppuntamento, String nuoveNote) {
 		int ret=0;
-		
-		ArrayList<EntityAppuntamento> l = ottieniAppuntamenti(cf);
+		EntityAgentediVendita a = new EntityAgentediVendita(cf);
+		ArrayList<EntityAppuntamento> l = a.getAppuntamenti();
 		for(int i=0; i<l.size(); i++) {
 			if(l.get(i).getId()==idAppuntamento) {
 				l.get(i).setNote(nuoveNote);
@@ -224,7 +226,9 @@ public class Controller {
 		
 		ret = a.salvaInDB();
 		
-		
+		if(ret>0) {
+			ret=id;
+		}
 		
 		return ret;
 	}
@@ -245,9 +249,12 @@ public class Controller {
 		int ret=0;
 		
 		EntityAppuntamento a = new EntityAppuntamento(idNuovo);
-		a.setPrecedente(idVecchio);
-				
-		ret = a.referenziaInDB();
+		EntityAppuntamento b = new EntityAppuntamento(idVecchio);
+		if(b.getEsito()==1) {
+			a.setPrecedente(idVecchio);
+			ret = a.referenziaInDB();
+		} //else throw AppuntamentoNonFallito
+		
 			
 		
 		return ret;

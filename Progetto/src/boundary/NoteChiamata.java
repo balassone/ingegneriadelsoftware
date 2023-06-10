@@ -63,6 +63,7 @@ public class NoteChiamata extends JFrame {
 				String id = textField.getText();
 				if(!id.isEmpty()) {
 					textPane.setText(Controller.visualizzaNoteChiamata("ABCDEF00D11H123N", Integer.parseInt(id)));
+					textPane.setEditable(false);
 				}
 			}
 		});

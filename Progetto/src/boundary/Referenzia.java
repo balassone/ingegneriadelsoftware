@@ -73,11 +73,11 @@ public class Referenzia extends JFrame {
 		textField_1.setColumns(10);
 		textField_1.setEditable(false);
 		JLabel lblNewLabel_1 = new JLabel("ID Vecchio Appuntamento");
-		lblNewLabel_1.setBounds(10, 57, 133, 14);
+		lblNewLabel_1.setBounds(10, 57, 183, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("ID Nuovo Appuntamento");
-		lblNewLabel_2.setBounds(10, 138, 133, 14);
+		lblNewLabel_2.setBounds(10, 138, 199, 14);
 		contentPane.add(lblNewLabel_2);
 		
 		JButton btnNewButton = new JButton("Check");
@@ -88,11 +88,11 @@ public class Referenzia extends JFrame {
 				if (!id.isEmpty()) {
 					ret = Controller.trovaAppuntamento(Integer.parseInt(id));
 					if (ret>0) {
-						textField_2.setText("Vecchio Trovato!");
+						textField_2.setText("Trovato!");
 						textField_1.setEditable(true);
 						
 					} else {
-						textField_2.setText("Vecchio Non Trovato!");
+						textField_2.setText("Non Trovato!");
 						textField_1.setEditable(false);
 					}
 				}
@@ -125,10 +125,10 @@ public class Referenzia extends JFrame {
 				if (!id.isEmpty()) {
 					ret = Controller.trovaAppuntamento(Integer.parseInt(id));
 					if (ret>0) {
-						textField_3.setText("Nuovo Trovato!");
+						textField_3.setText("Trovato!");
 						
 					} else {
-						textField_3.setText("Nuovo Non Trovato!");
+						textField_3.setText("Non Trovato!");
 						
 					}
 				}

@@ -102,7 +102,7 @@ public class EsitoTelefonata extends JFrame {
 					ret = Controller.registraEsitoChiamata(data, ora, note, esito, 2);
 				
 					if(ret>0) {
-						JOptionPane.showMessageDialog(btnNewButton, "Telefonata inserita correttamente", "Plain Text", JOptionPane.PLAIN_MESSAGE);
+						JOptionPane.showMessageDialog(btnNewButton, "Telefonata inserita correttamente con id="+ret, "Plain Text", JOptionPane.PLAIN_MESSAGE);
 					} else {
 						JOptionPane.showMessageDialog(btnNewButton, "Telefonata non inserita", "Error", JOptionPane.PLAIN_MESSAGE);
 					}

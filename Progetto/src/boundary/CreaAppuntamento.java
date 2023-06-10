@@ -83,7 +83,8 @@ public class CreaAppuntamento extends JFrame {
 		textField_3.setBounds(10, 197, 86, 20);
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
-		
+		// Non corretta la possibilità di scrivere le note?
+		// Login agente di vendita??
 		JButton btnNewButton = new JButton("Crea");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -100,7 +101,7 @@ public class CreaAppuntamento extends JFrame {
 					JOptionPane.showMessageDialog(btnNewButton, "Ora Non Valida", "Error", JOptionPane.PLAIN_MESSAGE);
 				} else if(note.isEmpty() || note.length()>1000){
 					JOptionPane.showMessageDialog(btnNewButton, "Note Non Valide", "Error", JOptionPane.PLAIN_MESSAGE);
-				} else if(esitos.isEmpty() || esito<1 || esito>2) {
+				} else if(esitos.isEmpty() || esito<0 || esito>1) {
 					JOptionPane.showMessageDialog(btnNewButton, "Esito Non Valido!", "Error", JOptionPane.PLAIN_MESSAGE);
 				} else {
 					
@@ -108,7 +109,7 @@ public class CreaAppuntamento extends JFrame {
 					ret = Controller.creaAppuntamento(data, ora, note, esito, "ABCDEF00D11H123N",callID);
 				
 					if(ret>0) {
-						JOptionPane.showMessageDialog(btnNewButton, "Appuntamento inserito correttamente", "Plain Text", JOptionPane.PLAIN_MESSAGE);
+						JOptionPane.showMessageDialog(btnNewButton, "Appuntamento inserito correttamente con id="+ret, "Plain Text", JOptionPane.PLAIN_MESSAGE);
 					} else {
 						JOptionPane.showMessageDialog(btnNewButton, "Appuntamento non inserita", "Error", JOptionPane.PLAIN_MESSAGE);
 					}
@@ -137,7 +138,7 @@ public class CreaAppuntamento extends JFrame {
 		JTextPane txtpnOccupato = new JTextPane();
 		txtpnOccupato.setBackground(SystemColor.menu);
 		txtpnOccupato.setBounds(219, 39, 190, 83);
-		txtpnOccupato.setText("1. OK\n2. Fallito");
+		txtpnOccupato.setText("0. OK\n1. Fallito");
 		contentPane.add(txtpnOccupato);
 	}
 }

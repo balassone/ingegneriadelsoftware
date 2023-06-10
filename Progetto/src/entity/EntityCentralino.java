@@ -15,6 +15,7 @@ public class EntityCentralino {
 	private ArrayList<EntityCentralinista> centralinisti;
 	private ArrayList<EntityAppuntamento> appuntamenti;
 	private ArrayList<EntityTelefonata> telefonate;
+	private ArrayList<EntityAppuntamento> falliti;
 	
 	public EntityCentralino() {
 		super();
@@ -83,4 +84,5 @@ public class EntityCentralino {
 		id=c.ottieniLatestIDTelefonata();
 		return id;
 	}
+	
 }
