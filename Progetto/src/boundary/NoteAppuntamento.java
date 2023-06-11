@@ -21,6 +21,7 @@ public class NoteAppuntamento extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -41,7 +42,12 @@ public class NoteAppuntamento extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public NoteAppuntamento() {
+		super();
+	}
+	
+	public NoteAppuntamento(String CF) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 607, 395);
 		contentPane = new JPanel();
@@ -50,12 +56,12 @@ public class NoteAppuntamento extends JFrame {
 		contentPane.setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(173, 303, 86, 20);
+		textField.setBounds(20, 304, 86, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		JEditorPane editorPane = new JEditorPane();
-		editorPane.setBounds(20, 36, 561, 256);
+		editorPane.setBounds(20, 36, 561, 206);
 		contentPane.add(editorPane);
 		
 		JButton btnNewButton = new JButton("Visualizza");
@@ -63,19 +69,22 @@ public class NoteAppuntamento extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String id = textField.getText();
 				if(!id.isEmpty()) {
-					editorPane.setText(Controller.ottieniNoteAppuntamento("ABCDEF00D11H123N", Integer.parseInt(id)));
+					// TODO: CF
+					editorPane.setText(Controller.ottieniNoteAppuntamento(CF, Integer.parseInt(id)));
+					textField_1.setText((Controller.ottieniEsitoAppuntamento(CF, Integer.parseInt(id))));
+					
 				}
 			}
 		});
-		btnNewButton.setBounds(300, 302, 105, 23);
+		btnNewButton.setBounds(116, 303, 105, 23);
 		contentPane.add(btnNewButton);
 		
-		JLabel lblNewLabel = new JLabel("Note Appuntamento");
+		JLabel lblNewLabel = new JLabel("Appuntamento");
 		lblNewLabel.setBounds(10, 11, 129, 14);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("ID:");
-		lblNewLabel_1.setBounds(139, 306, 33, 14);
+		lblNewLabel_1.setBounds(20, 281, 33, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		
@@ -86,19 +95,31 @@ public class NoteAppuntamento extends JFrame {
 				int ret=0;
 				String id = textField.getText();
 				String testo = editorPane.getText();
+				String esito = textField_1.getText();
 				if(testo.isEmpty() || testo.length()>1000) {
 					JOptionPane.showMessageDialog(btnNewButton, "Note Non Valide", "Error", JOptionPane.PLAIN_MESSAGE);
-				} else {
-					ret=Controller.modificaNoteAppuntamento("ABCDEF00D11H123N", Integer.parseInt(id), testo);
+				} else if (Integer.parseInt(esito)<0 || Integer.parseInt(esito)>1){
+					JOptionPane.showMessageDialog(btnNewButton, "Esito Non Valido", "Error", JOptionPane.PLAIN_MESSAGE);
+				}	else {
+					ret=Controller.modificaNoteAppuntamento(CF, Integer.parseInt(id), testo,Integer.parseInt(esito));
 					if(ret>0) {
-						JOptionPane.showMessageDialog(btnNewButton, "Note dell'appuntamento "+id+" modificate con successo!", "Plain Text", JOptionPane.PLAIN_MESSAGE);
+						JOptionPane.showMessageDialog(btnNewButton, "Appuntamento "+id+" modificato con successo!", "Plain Text", JOptionPane.PLAIN_MESSAGE);
 					} else {
-						JOptionPane.showMessageDialog(btnNewButton, "Note non modificate!", "Error", JOptionPane.PLAIN_MESSAGE);
+						JOptionPane.showMessageDialog(btnNewButton, "Non modificato!", "Error", JOptionPane.PLAIN_MESSAGE);
 					}
 				}
 			}
 		});
 		btnNewButton_1.setBounds(473, 302, 89, 23);
 		contentPane.add(btnNewButton_1);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(377, 304, 86, 20);
+		contentPane.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JLabel lblNewLabel_2 = new JLabel("Esito [0: OK; 1: Fallito]");
+		lblNewLabel_2.setBounds(377, 281, 185, 14);
+		contentPane.add(lblNewLabel_2);
 	}
 }

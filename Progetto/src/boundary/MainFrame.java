@@ -66,7 +66,7 @@ public class MainFrame extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				new CentralinistaView().setVisible(true);
+				new LoginCentralinista().setVisible(true);
 				
 				
 			}
@@ -79,7 +79,7 @@ public class MainFrame extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				new AgenteView().setVisible(true);
+				new LoginAgente().setVisible(true);
 				
 				
 			}

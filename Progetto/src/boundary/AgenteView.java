@@ -36,7 +36,12 @@ public class AgenteView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public AgenteView() {
+		super();
+	}
+	
+	public AgenteView(String CF) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -44,15 +49,15 @@ public class AgenteView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Agente");
-		lblNewLabel.setBounds(10, 11, 46, 14);
+		JLabel lblNewLabel = new JLabel("Agente: "+CF);
+		lblNewLabel.setBounds(10, 11, 307, 14);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("I miei appuntamenti");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				new Appuntamenti().setVisible(true);
+				new Appuntamenti(CF).setVisible(true);
 				
 			}
 		});
@@ -63,18 +68,18 @@ public class AgenteView extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				new NoteChiamata().setVisible(true);
+				new NoteChiamata(CF).setVisible(true);
 				
 			}
 		});
 		btnNewButton_1.setBounds(117, 175, 200, 23);
 		contentPane.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("Modifica Note Appuntamento");
+		JButton btnNewButton_2 = new JButton("Modifica Appuntamento");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				new NoteAppuntamento().setVisible(true);
+				new NoteAppuntamento(CF).setVisible(true);
 				
 			}
 		});

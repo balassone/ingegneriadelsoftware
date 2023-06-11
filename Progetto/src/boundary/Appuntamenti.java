@@ -40,7 +40,11 @@ public class Appuntamenti extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public Appuntamenti() {
+		super();
+	}
+	public Appuntamenti(String CF) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 699, 570);
 		contentPane = new JPanel();
@@ -56,7 +60,7 @@ public class Appuntamenti extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String s = new String();
-				ArrayList<EntityAppuntamento> a = Controller.ottieniAppuntamenti("ABCDEF00D11H123N");
+				ArrayList<EntityAppuntamento> a = Controller.ottieniAppuntamenti(CF);
 				for(int i=0; i<a.size(); i++) {
 					s=s+a.get(i).toString();
 				}

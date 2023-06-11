@@ -103,7 +103,7 @@ public class DBAppuntamento {
 	
 	public int scriviSuDB() {
 		int ret=0;
-		String query = "INSERT INTO appuntamenti(idappuntamenti,data,ora,note,esito,telefonata,agente) VALUES (\'"+this.id+"\',\'"+this.data+"\',\'"+this.ora+"\',\'"+this.note+"\',\'"+this.esito+"\',\'"+this.telefonata.getId()+"\',\'"+this.agente.getCodicefiscale()+"\');";
+		String query = "INSERT INTO appuntamenti(idappuntamenti,data,ora,telefonata,agente) VALUES (\'"+this.id+"\',\'"+this.data+"\',\'"+this.ora+"\',\'"+this.telefonata.getId()+"\',\'"+this.agente.getCodicefiscale()+"\');";
 		try {
 			ret = DBConnectionManager.updateQuery(query);
 		} catch(SQLException | ClassNotFoundException e) {
@@ -137,7 +137,7 @@ public class DBAppuntamento {
 	*/
 	public int aggiornaSuDB() {
 		int ret=0;
-		String query = "UPDATE appuntamenti SET note='"+this.note+"' WHERE idappuntamenti='"+this.id+"';";
+		String query = "UPDATE appuntamenti SET note='"+this.note+"', esito='"+this.esito+"' WHERE idappuntamenti='"+this.id+"';";
 		try {
 			ret = DBConnectionManager.updateQuery(query);
 		} catch(SQLException | ClassNotFoundException e) {

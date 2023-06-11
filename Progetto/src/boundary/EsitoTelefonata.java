@@ -48,7 +48,12 @@ public class EsitoTelefonata extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public EsitoTelefonata() {
+		super();
+	}
+	
+	public EsitoTelefonata(int idCentralinista) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -99,7 +104,7 @@ public class EsitoTelefonata extends JFrame {
 						} else if(esitos.isEmpty()|| esito < 1 || esito > 5) {
 							JOptionPane.showMessageDialog(btnNewButton, "Esito Non Valido!", "Error", JOptionPane.PLAIN_MESSAGE);
 						} else {
-							ret = Controller.registraEsitoChiamata(data, ora, note, esito, 2);
+							ret = Controller.registraEsitoChiamata(data, ora, note, esito, idCentralinista);
 							if(ret>0) {
 								JOptionPane.showMessageDialog(btnNewButton, "Telefonata inserita correttamente con id="+ret, "Plain Text", JOptionPane.PLAIN_MESSAGE);
 							} else {

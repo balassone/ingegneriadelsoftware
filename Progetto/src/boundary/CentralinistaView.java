@@ -44,8 +44,12 @@ public class CentralinistaView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public CentralinistaView() {
-		nums = Controller.numeriDaChiamare(2);
+		super();
+	}
+	public CentralinistaView(int id) {
+		nums = Controller.numeriDaChiamare(id);
 		i=0;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -70,14 +74,14 @@ public class CentralinistaView extends JFrame {
 		textField.setColumns(10);
 		textField.setEditable(false);
 		
-		JLabel lblNewLabel = new JLabel("Centralinista");
-		lblNewLabel.setBounds(10, 11, 94, 14);
+		JLabel lblNewLabel = new JLabel("Centralinista: "+Controller.datiCentralinista(id));
+		lblNewLabel.setBounds(10, 11, 307, 14);
 		contentPane.add(lblNewLabel);
 		
 		btnNewButton_1 = new JButton("Registra Esito");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new EsitoTelefonata().setVisible(true);
+				new EsitoTelefonata(id).setVisible(true);
 			}
 		});
 		btnNewButton_1.setBounds(115, 115, 205, 23);

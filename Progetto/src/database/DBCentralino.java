@@ -15,7 +15,7 @@ public class DBCentralino {
 		super();
 	}
 	
-	public int trovaLista(int id) {
+	public static int trovaLista(int id) {
 		int ret = 0;
 		
 		String query = "SELECT * FROM listenumeritelefonici where id='"+id+"';";
@@ -37,7 +37,7 @@ public class DBCentralino {
 		return ret;
 	}
 	
-	public int ottieniLatestIDLista() {
+	public static int ottieniLatestIDLista() {
 		int ret = 0;
 		
 		String query = "SELECT MAX(id) FROM listenumeritelefonici;";
@@ -59,7 +59,7 @@ public class DBCentralino {
 		return ret;
 	}
 	
-	public int trovaGruppo(int id) {
+	public static int trovaGruppo(int id) {
 		int ret = 0;
 		
 		String query = "SELECT * FROM gruppi where id='"+id+"';";
@@ -81,7 +81,7 @@ public class DBCentralino {
 		return ret;
 	}
 	
-	public int ottieniLatestIDGruppo() {
+	public static int ottieniLatestIDGruppo() {
 		int ret = 0;
 		
 		String query = "SELECT MAX(id) FROM gruppi;";
@@ -103,7 +103,71 @@ public class DBCentralino {
 		return ret;
 	}
 	
-	public int liberaTutti(int idGruppo) {
+	public static int trovaCentralinista(int idCentralinista) {
+		int ret = 0;
+		
+		String query = "SELECT * FROM centralinisti where id='"+idCentralinista+"';";
+		
+		try {
+			ResultSet rs = DBConnectionManager.selectQuery(query);
+			if(rs.next()) {
+				ret=1;
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ret = -1;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ret = -1;
+		}
+		return ret;
+	}
+	
+	public static int trovaAgente(String CF) {
+		int ret = 0;
+		
+		String query = "SELECT * FROM agentidivendita where codicefiscale='"+CF+"';";
+		
+		try {
+			ResultSet rs = DBConnectionManager.selectQuery(query);
+			if(rs.next()) {
+				ret=1;
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ret = -1;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ret = -1;
+		}
+		return ret;
+	}
+	
+	public static ArrayList<String> agentiDisponibili(){
+		ArrayList<String> ret = new ArrayList<String>();
+		
+		try {
+			
+			ResultSet rs = DBConnectionManager.selectQuery("select codicefiscale from agentidivendita;");
+			
+			while(rs.next()) {
+				
+				ret.add(rs.getString("codicefiscale"));
+			}
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return ret;
+	}
+	
+	public static int liberaTutti(int idGruppo) {
 		int ret=0;
 		String query = "UPDATE centralinisti SET gruppo=NULL WHERE gruppo='"+idGruppo+"';";
 		try {
@@ -115,7 +179,7 @@ public class DBCentralino {
 		return ret;
 	}
 	
-	public boolean checkListaAssegnata(int idLista) {
+	public static boolean checkListaAssegnata(int idLista) {
 		boolean check = true;
 		
 		String query = "SELECT * FROM gruppi WHERE lista='"+idLista+"';";
@@ -132,7 +196,7 @@ public class DBCentralino {
 		return check;
 	}
 	
-	public int trovaAppuntamento(int id) {
+	public static int trovaAppuntamento(int id) {
 		int ret = 0;
 		
 		String query = "SELECT * FROM appuntamenti WHERE idappuntamenti='"+id+"';";
@@ -154,7 +218,7 @@ public class DBCentralino {
 		return ret;
 	}
 	
-	public int ottieniLatestIDAppuntamento() {
+	public static int ottieniLatestIDAppuntamento() {
 		int ret = 0;
 		
 		String query = "SELECT MAX(idappuntamenti) FROM appuntamenti;";
@@ -176,7 +240,7 @@ public class DBCentralino {
 		return ret;
 	}
 	
-	public int ottieniLatestIDTelefonata() {
+	public static int ottieniLatestIDTelefonata() {
 		int ret = 0;
 		
 		String query = "SELECT MAX(id) FROM telefonate;";
@@ -197,6 +261,8 @@ public class DBCentralino {
 		}
 		return ret;
 	}
+	
+	
 
 	public ArrayList<DBGruppo> getGruppi() {
 		return gruppi;

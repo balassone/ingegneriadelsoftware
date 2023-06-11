@@ -17,6 +17,11 @@ import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+//IMPORTANTE. Runnando il main non funzionerà.
+//La classe CreaGruppo invocherà il costruttore di questa classe passando al costruttore l'id del gruppo a cui aggiungere i centralinisti.
+
+//Così facendo, riduciamo drasticamente il rischio di errore.
+
 public class AggiungiCentralinista extends JFrame {
 
 	private JPanel contentPane;

@@ -21,67 +21,79 @@ public class EntityCentralino {
 		super();
 	}
 	
-	public int trovaLista(int id) {
+	public static int trovaLista(int id) {
 		int ret = 0;
 		
-		DBCentralino c = new DBCentralino();
-		ret = c.trovaLista(id);
+		ret = DBCentralino.trovaLista(id);
 		
 		return ret;
 	}
 	
-	public int ottieniLatestIDLista() {
+	public static int ottieniLatestIDLista() {
 		int ret=0;
-		DBCentralino c = new DBCentralino();
-		ret = c.ottieniLatestIDLista();
+		ret = DBCentralino.ottieniLatestIDLista();
 		return ret;
 	}
 	
-	public int trovaGruppo(int id) {
-		int ret=-1;
-		DBCentralino g = new DBCentralino();
-		ret = g.trovaGruppo(id);
+	public static int trovaGruppo(int id) {
+		int ret=0;
+		ret = DBCentralino.trovaGruppo(id);
 		return ret;
 	}
 	
-	public int ottieniLatestIDGruppo() {
+	public static int ottieniLatestIDGruppo() {
 		int id=0;
-		DBCentralino c = new DBCentralino();
-		id = c.ottieniLatestIDGruppo();
+		id = DBCentralino.ottieniLatestIDGruppo();
 		return id;
 	}
 	
-	public int liberaTutti(int idGruppo) {
-		int ret = 0;
-		DBCentralino c = new DBCentralino();
-		ret = c.liberaTutti(idGruppo);
+	public static int trovaCentralinista(int id) {
+		int ret=0;
+		ret = DBCentralino.trovaCentralinista(id);
 		return ret;
 	}
 	
-	public boolean checkListaAssegnata(int id) {
+	public static int liberaTutti(int idGruppo) {
+		int ret = 0;
+		ret = DBCentralino.liberaTutti(idGruppo);
+		return ret;
+	}
+	
+	public static int trovaAgente(String CF) {
+		int ret=0;
+		ret = DBCentralino.trovaAgente(CF);
+		return ret;
+	}
+	
+	public static String agentiDisponibili() {
+		String s = "";
+		ArrayList<String> agenti = DBCentralino.agentiDisponibili();
+		for(int i=0; i<agenti.size(); i++) {
+			s=s+agenti.get(i)+"\n";
+		}
+		return s;
+	}
+	
+	public static boolean checkListaAssegnata(int id) {
 		boolean assegnata=true;
-		DBCentralino c = new DBCentralino();
-		assegnata = c.checkListaAssegnata(id);
+		assegnata = DBCentralino.checkListaAssegnata(id);
 		return assegnata;
 	}
 	
-	public int trovaAppuntamento(int id) {
+	public static int trovaAppuntamento(int id) {
 		int ret=0;
-		DBCentralino c = new DBCentralino();
-		ret=c.trovaAppuntamento(id);
+		ret = DBCentralino.trovaAppuntamento(id);
 		return ret;
 	}
 	
-	public int ottieniLatestIDAppuntamento() {
+	public static int ottieniLatestIDAppuntamento() {
 		int id=0;
-		DBCentralino c = new DBCentralino();
-		id=c.ottieniLatestIDAppuntamento();
+		id = DBCentralino.ottieniLatestIDAppuntamento();
 		return id;
 	}
-	public int ottieniLatestIDTelefonata() {
+	public static int ottieniLatestIDTelefonata() {
 		int id=0;
-		DBCentralino c = new DBCentralino();
-		id=c.ottieniLatestIDTelefonata();
+		id = DBCentralino.ottieniLatestIDTelefonata();
 		return id;
 	}
 

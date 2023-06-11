@@ -19,13 +19,17 @@ import control.Controller;
 import exceptions.DataNonValida;
 import exceptions.OraNonValida;
 
+// IMPORTANTE. Runnando il main non funzionerà.
+// La classe EsitoTelefonata invocherà il costruttore di questa classe passando al costruttore l'id della telefonata relativa all'appuntamento.
+
+// Così facendo, riduciamo drasticamente il rischio di errore.
+
 public class CreaAppuntamento extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTextField textField_3;
 	private int callID;
 
 	/**
@@ -77,26 +81,18 @@ public class CreaAppuntamento extends JFrame {
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(10, 148, 414, 20);
+		textField_2.setBounds(10, 196, 414, 20);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(10, 197, 86, 20);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
-		// Non corretta la possibilità di scrivere le note?
-		// Login agente di vendita??
 		JButton btnNewButton = new JButton("Crea");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Controlli sull'input vanno fatti qui!
+				
 				int ret=0;
 				String data = textField.getText();
 				String ora = textField_1.getText();
-				String note = textField_2.getText();
-				String esitos = textField_3.getText();
-				int esito = Integer.parseInt(esitos);
+				String agente = textField_2.getText();
 				
 				
 				try {
@@ -104,12 +100,10 @@ public class CreaAppuntamento extends JFrame {
 					try {
 						Controller.isOraValida(ora);
 						
-						if(note.isEmpty() || note.length()>1000){
-							JOptionPane.showMessageDialog(btnNewButton, "Note Non Valide", "Error", JOptionPane.PLAIN_MESSAGE);
-						} else if(esitos.isEmpty() || esito<0 || esito>1) {
-							JOptionPane.showMessageDialog(btnNewButton, "Esito Non Valido!", "Error", JOptionPane.PLAIN_MESSAGE);
+						if(agente.isEmpty() || !(Controller.trovaAgente(agente)>0)){
+							JOptionPane.showMessageDialog(btnNewButton, "Agente Non Trovato", "Error", JOptionPane.PLAIN_MESSAGE);
 						} else {
-							ret = Controller.creaAppuntamento(data, ora, note, esito, "ABCDEF00D11H123N",callID);
+							ret = Controller.creaAppuntamento(data, ora, agente,callID);
 							if(ret>0) {
 								JOptionPane.showMessageDialog(btnNewButton, "Appuntamento inserito correttamente con id="+ret, "Plain Text", JOptionPane.PLAIN_MESSAGE);
 							} else {
@@ -136,19 +130,19 @@ public class CreaAppuntamento extends JFrame {
 		lblNewLabel_2.setBounds(10, 85, 46, 14);
 		contentPane.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("Note");
-		lblNewLabel_3.setBounds(10, 133, 46, 14);
+		JLabel lblNewLabel_3 = new JLabel("CF Agente");
+		lblNewLabel_3.setBounds(10, 171, 101, 14);
 		contentPane.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("Esito");
-		lblNewLabel_4.setBounds(10, 179, 46, 14);
-		contentPane.add(lblNewLabel_4);
+		JTextPane textPane = new JTextPane();
+		textPane.setBounds(221, 54, 203, 114);
+		contentPane.add(textPane);
+		textPane.setEditable(false);
+		textPane.setText(Controller.agentiDisponibili());
 		
-		JTextPane txtpnOccupato = new JTextPane();
-		txtpnOccupato.setBackground(SystemColor.menu);
-		txtpnOccupato.setBounds(219, 39, 190, 83);
-		txtpnOccupato.setText("0. OK\n1. Fallito");
-		contentPane.add(txtpnOccupato);
+		JLabel lblNewLabel_4 = new JLabel("Agenti Disponibili");
+		lblNewLabel_4.setBounds(221, 36, 124, 14);
+		contentPane.add(lblNewLabel_4);
 	}
 }
 

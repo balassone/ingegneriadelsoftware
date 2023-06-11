@@ -70,8 +70,6 @@ public class EntityAppuntamento {
 		a.setId(this.id);
 		a.setData(data);
 		a.setOra(ora);
-		a.setNote(this.note);
-		a.setEsito(esito);
 		a.setAgente(new DBAgentediVendita(this.agente.getCodicefiscale()));
 		a.setTelefonata(new DBTelefonata(this.telefonata.getId()));
 		ret = a.scriviSuDB();
@@ -83,6 +81,7 @@ public class EntityAppuntamento {
 		DBAppuntamento a = new DBAppuntamento();
 		a.setId(this.id);
 		a.setNote(this.note);
+		a.setEsito(this.esito);
 		ret = a.aggiornaSuDB();
 		return ret;
 	}
@@ -180,6 +179,11 @@ public class EntityAppuntamento {
 	@Override
 	public String toString() {
 		String s = "Appuntamento " + id + ": \ndata: " + data + ", \nora: " + ora + ", \nnote: " + note + ", \ntelefonata: "+telefonata.getId();
+		if(esito==0) {
+			s=s+"\nesito: OK!";
+		} else if (esito==1) {
+			s=s+"\nesito: Fallito!";
+		}
 		if(this.precedente>0) {
 			s = s+"\nPRECEDENTE: "+precedente;
 		}
