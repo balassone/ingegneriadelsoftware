@@ -59,12 +59,7 @@ public class Appuntamenti extends JFrame {
 		JButton btnNewButton = new JButton("Ottieni");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String s = new String();
-				ArrayList<EntityAppuntamento> a = Controller.ottieniAppuntamenti(CF);
-				for(int i=0; i<a.size(); i++) {
-					s=s+a.get(i).toString();
-				}
-				textPane.setText(s);
+				textPane.setText(Controller.stampaAppuntamenti(CF));
 			}
 		});
 		btnNewButton.setBounds(300, 497, 89, 23);

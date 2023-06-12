@@ -18,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 import control.Controller;
 import exceptions.DataNonValida;
 import exceptions.OraNonValida;
+import javax.swing.JComboBox;
 
 // IMPORTANTE. Runnando il main non funzionerà.
 // La classe EsitoTelefonata invocherà il costruttore di questa classe passando al costruttore l'id della telefonata relativa all'appuntamento.
@@ -29,7 +30,6 @@ public class CreaAppuntamento extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
 	private int callID;
 
 	/**
@@ -80,10 +80,9 @@ public class CreaAppuntamento extends JFrame {
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(10, 196, 414, 20);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		JComboBox comboBox = new JComboBox(Controller.agentiDisponibili());
+		comboBox.setBounds(10, 158, 146, 22);
+		contentPane.add(comboBox);
 		
 		JButton btnNewButton = new JButton("Crea");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -92,7 +91,7 @@ public class CreaAppuntamento extends JFrame {
 				int ret=0;
 				String data = textField.getText();
 				String ora = textField_1.getText();
-				String agente = textField_2.getText();
+				String agente = (String) comboBox.getSelectedItem();
 				
 				
 				try {
@@ -131,18 +130,10 @@ public class CreaAppuntamento extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("CF Agente");
-		lblNewLabel_3.setBounds(10, 171, 101, 14);
+		lblNewLabel_3.setBounds(10, 133, 101, 14);
 		contentPane.add(lblNewLabel_3);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(221, 54, 203, 114);
-		contentPane.add(textPane);
-		textPane.setEditable(false);
-		textPane.setText(Controller.agentiDisponibili());
 		
-		JLabel lblNewLabel_4 = new JLabel("Agenti Disponibili");
-		lblNewLabel_4.setBounds(221, 36, 124, 14);
-		contentPane.add(lblNewLabel_4);
 	}
 }
 

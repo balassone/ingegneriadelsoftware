@@ -20,7 +20,7 @@ public class CentralinistaView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private ArrayList<EntityNumeroTelefonico> nums;
+	private ArrayList<String> nums;
 	private int i;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
@@ -61,7 +61,7 @@ public class CentralinistaView extends JFrame {
 		JButton btnNewButton = new JButton("Prossimo Numero!");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText(nums.get(i).getNumero());
+				textField.setText(nums.get(i));
 				i=(i+1)%(nums.size());
 			}
 		});

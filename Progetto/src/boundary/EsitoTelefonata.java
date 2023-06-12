@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTextPane;
 import java.awt.Color;
 import java.awt.SystemColor;
@@ -27,7 +28,6 @@ public class EsitoTelefonata extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTextField textField_3;
 
 	/**
 	 * Launch the application.
@@ -80,10 +80,10 @@ public class EsitoTelefonata extends JFrame {
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(10, 197, 86, 20);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
+		String[] nums = {"1","2","3","4","5"};
+		JComboBox comboBox = new JComboBox(nums);
+		comboBox.setBounds(10, 198, 55, 22);
+		contentPane.add(comboBox);
 		
 		JButton btnNewButton = new JButton("Registra");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -92,7 +92,7 @@ public class EsitoTelefonata extends JFrame {
 				String data = textField.getText();
 				String ora = textField_1.getText();
 				String note = textField_2.getText();
-				String esitos = textField_3.getText();
+				String esitos = (String) comboBox.getSelectedItem();
 				int esito = Integer.parseInt(esitos);
 				
 				try {
