@@ -18,7 +18,7 @@ public class EntityCentralino {
 	public EntityCentralino() {
 		super();
 	}
-	
+	// Singleton
 	public static EntityCentralino getInstance() {
 		if(instance==null) {
 			instance = new EntityCentralino();

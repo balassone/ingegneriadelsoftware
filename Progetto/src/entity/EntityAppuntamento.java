@@ -33,8 +33,7 @@ public class EntityAppuntamento {
 		}
 		a.caricaTelefonataDaDB();
 		caricaTelefonata(a);
-		//a.caricaAgenteDaDB();
-		//caricaAgente(a);
+		
 		
 	}
 	
@@ -50,8 +49,7 @@ public class EntityAppuntamento {
 		}
 		a.caricaTelefonataDaDB();
 		caricaTelefonata(a);
-		//a.caricaAgenteDaDB();
-		//caricaAgente(a);
+		
 	}
 	
 	public void caricaTelefonata(DBAppuntamento a) {
@@ -85,14 +83,7 @@ public class EntityAppuntamento {
 		ret = a.aggiornaSuDB();
 		return ret;
 	}
-	/*
-	public int ottieniLatestID() {
-		int id=0;
-		DBTelefonata t = new DBTelefonata();
-		id=t.ottieniLatestID();
-		return id;
-	}
-	*/
+	
 	public int referenziaInDB() {
 		int ret=0;
 		
@@ -104,14 +95,7 @@ public class EntityAppuntamento {
 		
 		return ret;
 	}
-	/*
-	public int trovaAppuntamento(int id) {
-		int ret=0;
-		DBAppuntamento a = new DBAppuntamento();
-		ret=a.trovaAppuntamento(id);
-		return ret;
-	}
-	*/
+	
 	public int getId() {
 		return id;
 	}

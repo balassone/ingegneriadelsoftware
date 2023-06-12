@@ -16,7 +16,7 @@ public class EntityCentralinista {
 		super();
 		this.telefonate = new ArrayList<EntityTelefonata>();
 	}
-	//Costruttore con PK
+	
 	public EntityCentralinista(int id) {
 		super();
 		this.id=id;
@@ -30,7 +30,7 @@ public class EntityCentralinista {
 		centralinista.caricaGruppoDaDB();
 		caricaGruppo(centralinista);
 	}
-	//Costruttore con DB
+	
 	public EntityCentralinista(DBCentralinista centralinista) {
 		this.id=centralinista.getId();
 		this.nome=centralinista.getNome();
@@ -61,14 +61,7 @@ public class EntityCentralinista {
 		ret = c.assegnaGruppo(idGruppo, idCentralinista);
 		return ret;
 	}
-	/*
-	public int liberaTutti(int idGruppo) {
-		int ret = 0;
-		DBCentralinista c = new DBCentralinista();
-		ret = c.liberaTutti(idGruppo);
-		return ret;
-	}
-	*/
+	
 	public int getId() {
 		return id;
 	}

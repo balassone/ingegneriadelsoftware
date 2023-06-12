@@ -84,7 +84,7 @@ public class AggiungiNumero extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(121, 72, 89, 23);
+		btnNewButton.setBounds(121, 72, 139, 23);
 		contentPane.add(btnNewButton);
 		
 		textField_1 = new JTextField();

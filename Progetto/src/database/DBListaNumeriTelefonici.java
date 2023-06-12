@@ -88,52 +88,6 @@ public class DBListaNumeriTelefonici {
 		
 		return ret;
 	}
-	/*
-	public int trovaLista(int id) {
-		int ret = 0;
-		
-		String query = "SELECT * FROM listenumeritelefonici where id='"+id+"';";
-		
-		try {
-			ResultSet rs = DBConnectionManager.selectQuery(query);
-			if(rs.next()) {
-				ret=1;
-			}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			ret = -1;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			ret = -1;
-		}
-		return ret;
-	}
-	*/
-	/*
-	public int ottieniLatestId() {
-		int ret = 0;
-		
-		String query = "SELECT MAX(id) FROM listenumeritelefonici;";
-		
-		try {
-			ResultSet rs = DBConnectionManager.selectQuery(query);
-			if(rs.next()) {
-				ret=rs.getInt(1)+1;
-			}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			ret = -1;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			ret = -1;
-		}
-		return ret;
-	}
-	*/
 	
 	public int getId() {
 		return id;

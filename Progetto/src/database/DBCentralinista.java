@@ -12,12 +12,12 @@ public class DBCentralinista {
 	private DBGruppo gruppo;
 	private ArrayList<DBTelefonata> telefonate;
 	
-	// Costruttore vuoto
+	
 	public DBCentralinista() {
 		super();
 		this.telefonate = new ArrayList<DBTelefonata>();
 	}
-	// Costruttore con ID
+	
 	public DBCentralinista(int id) {
 		this.id=id;
 		this.gruppo = new DBGruppo();
@@ -38,7 +38,7 @@ public class DBCentralinista {
 		this.email=centr.getEmail();
 	}
 	
-	// Caricamento
+	
 	public void caricaDaDB() {
 		String query = "SELECT * FROM centralinisti WHERE id='"+this.id+"';";
 		try {
@@ -59,7 +59,7 @@ public class DBCentralinista {
 		}
 	}
 	
-	// Caricamento Gruppo
+	
 	
 	public void caricaTelefonateDaDB() {
 		String query = new String("SELECT * FROM telefonate WHERE centralinista='"+this.id+"';");
@@ -111,19 +111,7 @@ public class DBCentralinista {
 		}
 		return ret;
 	}
-	/*
-	public int liberaTutti(int idGruppo) {
-		int ret=0;
-		String query = "UPDATE centralinisti SET gruppo=NULL WHERE gruppo='"+idGruppo+"';";
-		try {
-			ret = DBConnectionManager.updateQuery(query);
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return ret;
-	}
-	*/
+	
 	public int getId() {
 		return id;
 	}

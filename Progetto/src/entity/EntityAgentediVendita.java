@@ -16,8 +16,8 @@ public class EntityAgentediVendita {
 		this.codicefiscale=cf;
 		this.appuntamenti=new ArrayList<EntityAppuntamento>();
 		DBAgentediVendita a = new DBAgentediVendita(cf);
-		a.caricaAppuntamentiDaDB(); //funge
-		caricaAppuntamenti(a); //EXPLORING
+		a.caricaAppuntamentiDaDB(); 
+		caricaAppuntamenti(a); 
 	}
 	
 	public EntityAgentediVendita(DBAgentediVendita a) {

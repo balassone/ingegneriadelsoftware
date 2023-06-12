@@ -25,9 +25,6 @@ public class EntityListaNumeriTelefonici {
 		lista.caricaNumeriDaDB();
 		caricaNumeri(lista);
 		
-		//lista.caricaGruppoDaDB();
-		//caricaGruppo(lista);
-		
 	}
 	
 	public EntityListaNumeriTelefonici(DBListaNumeriTelefonici lista) {
@@ -36,8 +33,6 @@ public class EntityListaNumeriTelefonici {
 		this.numeri=new ArrayList<EntityNumeroTelefonico>();
 		lista.caricaNumeriDaDB();
 		caricaNumeri(lista);
-		//lista.caricaGruppoDaDB();
-		//caricaGruppo(lista);
 	}
 	
 	public int ScriviSuDB(int id, String nome) {
@@ -64,16 +59,7 @@ public class EntityListaNumeriTelefonici {
 		EntityGruppo g = new EntityGruppo(lista.getGruppo());
 		this.gruppo=g;
 	}
-	/*
-	public int trovaLista(int id) {
-		int ret = 0;
-		
-		DBListaNumeriTelefonici l = new DBListaNumeriTelefonici();
-		ret = l.trovaLista(id);
-		
-		return ret;
-	}
-	*/
+	
 	public boolean verificaPresenza(EntityNumeroTelefonico num) {
 		boolean guardia = false;
 		
@@ -84,14 +70,7 @@ public class EntityListaNumeriTelefonici {
 		}
 		return guardia;
 	}
-	/*
-	public int ottieniLatestID() {
-		int ret=0;
-		DBListaNumeriTelefonici l = new DBListaNumeriTelefonici();
-		ret = l.ottieniLatestId();
-		return ret;
-	}
-	*/
+	
 	public int getId() {
 		return id;
 	}

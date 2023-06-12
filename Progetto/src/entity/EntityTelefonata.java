@@ -24,10 +24,7 @@ public class EntityTelefonata {
 		this.ora=t.getOra();
 		this.note=t.getNote();
 		this.esito=t.getEsito();
-		//t.caricaAppuntamentoDaDB();
-		//caricaAppuntamento(t);
-		//t.caricaCentralinistaDaDB();
-		//caricaCentralinista(t);
+		
 	}
 	
 	public EntityTelefonata(DBTelefonata t) {
@@ -37,10 +34,7 @@ public class EntityTelefonata {
 		this.ora=t.getOra();
 		this.note=t.getNote();
 		this.esito=t.getEsito();
-		//t.caricaAppuntamentoDaDB();
-		//caricaAppuntamento(t);
-		//t.caricaCentralinistaDaDB();
-		//caricaCentralinista(t);
+		
 	}
 	
 	public void caricaAppuntamento(DBTelefonata t) {
@@ -69,14 +63,7 @@ public class EntityTelefonata {
 		
 		return ret;
 	}
-	/*
-	public int ottieniLatestID() {
-		int id=0;
-		DBTelefonata t = new DBTelefonata();
-		id=t.ottieniLatestID();
-		return id;
 	
-*/
 	public int getId() {
 		return id;
 	}

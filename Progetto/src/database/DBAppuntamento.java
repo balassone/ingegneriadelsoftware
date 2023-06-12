@@ -45,29 +45,7 @@ public class DBAppuntamento {
 			e.printStackTrace();
 		}
 	}
-	/*
-	public int ottieniLatestID() {
-		int ret = 0;
-		
-		String query = "SELECT MAX(idappuntamenti) FROM appuntamenti;";
-		
-		try {
-			ResultSet rs = DBConnectionManager.selectQuery(query);
-			if(rs.next()) {
-				ret=rs.getInt(1)+1;
-			}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			ret = -1;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			ret = -1;
-		}
-		return ret;
-	}
-	*/
+	
 	public void caricaTelefonataDaDB() {
 		String query = "SELECT * FROM telefonate WHERE id =(SELECT telefonata FROM appuntamenti WHERE idappuntamenti='"+this.id+"');";
 		try {
@@ -112,29 +90,7 @@ public class DBAppuntamento {
 		}
 		return ret;
 	}
-	/*
-	public int trovaAppuntamento(int id) {
-		int ret = 0;
-		
-		String query = "SELECT * FROM appuntamenti WHERE idappuntamenti='"+id+"';";
-		
-		try {
-			ResultSet rs = DBConnectionManager.selectQuery(query);
-			if(rs.next()) {
-				ret=1;
-			}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			ret = -1;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			ret = -1;
-		}
-		return ret;
-	}
-	*/
+	
 	public int aggiornaSuDB() {
 		int ret=0;
 		String query = "UPDATE appuntamenti SET note='"+this.note+"', esito='"+this.esito+"' WHERE idappuntamenti='"+this.id+"';";

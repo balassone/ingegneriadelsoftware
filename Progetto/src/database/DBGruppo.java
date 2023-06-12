@@ -32,29 +32,7 @@ public class DBGruppo {
 			e.printStackTrace();
 		}
 	}
-	/*
-	public int ottieniLatestId() {
-		int ret = 0;
-		
-		String query = "SELECT MAX(id) FROM gruppi;";
-		
-		try {
-			ResultSet rs = DBConnectionManager.selectQuery(query);
-			if(rs.next()) {
-				ret=rs.getInt(1)+1;
-			}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			ret = -1;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			ret = -1;
-		}
-		return ret;
-	}
-	*/
+	
 	public void caricaCentralinistiDaDB() {
 		String query = "SELECT * FROM centralinisti WHERE gruppo='"+this.id+"';";
 		try {
@@ -105,29 +83,7 @@ public class DBGruppo {
 		
 		return ret;
 	}
-	/*
-	public int trovaGruppo(int id) {
-		int ret = 0;
-		
-		String query = "SELECT * FROM gruppi where id='"+id+"';";
-		
-		try {
-			ResultSet rs = DBConnectionManager.selectQuery(query);
-			if(rs.next()) {
-				ret=1;
-			}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			ret = -1;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			ret = -1;
-		}
-		return ret;
-	}
-	*/
+	
 	public int rimuoviDaDB(int id) {
 		int ret = 0;
 		
@@ -145,24 +101,7 @@ public class DBGruppo {
 		
 		return ret;
 	}
-	/*
-	public boolean checkListaAssegnata(int idLista) {
-		boolean check = true;
-		
-		String query = "SELECT * FROM gruppi WHERE lista='"+idLista+"';";
-		
-		try {
-			ResultSet rs = DBConnectionManager.selectQuery(query);
-			if(!rs.next()) {
-				check=false;
-			}
-		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-		return check;
-	}
-	*/
+	
 	public int assegnaLista(int idLista, int idGruppo) {
 		int ret=0;
 		
