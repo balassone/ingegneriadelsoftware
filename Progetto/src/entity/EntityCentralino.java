@@ -18,7 +18,6 @@ public class EntityCentralino {
 	private ArrayList<EntityCentralinista> centralinisti;
 	private ArrayList<EntityAppuntamento> appuntamenti;
 	private ArrayList<EntityTelefonata> telefonate;
-	private ArrayList<EntityAppuntamento> falliti;
 	
 	public EntityCentralino() {
 		super();
@@ -75,8 +74,6 @@ public class EntityCentralino {
 		ret = DBCentralino.trovaCentralinista(id);
 		return ret;
 	}
-	
-	
 	
 	private int liberaTutti(int idGruppo) {
 		int ret = 0;
@@ -139,7 +136,7 @@ public class EntityCentralino {
 		return ret;
 	}
 	
-	public boolean checkListaAssegnata(int id) {
+	private boolean checkListaAssegnata(int id) {
 		boolean assegnata=true;
 		assegnata = DBCentralino.checkListaAssegnata(id);
 		return assegnata;
@@ -178,12 +175,12 @@ public class EntityCentralino {
 		return ret;
 	}
 	
-	public int ottieniLatestIDAppuntamento() {
+	private int ottieniLatestIDAppuntamento() {
 		int id=0;
 		id = DBCentralino.ottieniLatestIDAppuntamento();
 		return id;
 	}
-	public int ottieniLatestIDTelefonata() {
+	private int ottieniLatestIDTelefonata() {
 		int id=0;
 		id = DBCentralino.ottieniLatestIDTelefonata();
 		return id;
@@ -444,13 +441,7 @@ public class EntityCentralino {
 		this.telefonate = telefonate;
 	}
 
-	public ArrayList<EntityAppuntamento> getFalliti() {
-		return falliti;
-	}
-
-	public void setFalliti(ArrayList<EntityAppuntamento> falliti) {
-		this.falliti = falliti;
-	}
+	
 	
 	
 	

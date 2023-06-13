@@ -143,3 +143,20 @@ COLLATE = utf8mb4_0900_ai_ci;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+INSERT INTO `centralino`.`agentidivendita` (`codicefiscale`) VALUES ('ABCDEF00D11H123N');
+INSERT INTO `centralino`.`agentidivendita` (`codicefiscale`) VALUES ('GHIJLM01E12F456K');
+INSERT INTO `centralino`.`agentidivendita` (`codicefiscale`) VALUES ('KLJFCB73M23K805B');
+INSERT INTO `centralino`.`agentidivendita` (`codicefiscale`) VALUES ('FOOBAR36b87P365D');
+
+INSERT INTO `centralino`.`listenumeritelefonici` (`id`, `nome`) VALUES (1, 'Marketing'), (2, 'Business'), (3, 'Customer Service');
+
+INSERT INTO `centralino`.`gruppi` (`id`, `descrizione`, `lista`) VALUES (1, 'Vendite', 1), (2, 'Consulenze', 2), (3, 'Assistenza',3);
+
+INSERT INTO `centralino`.`centralinisti` (`id`, `nome`, `cognome`, `email`, `gruppo`) VALUES (1, 'Mario', 'Rossi', 'mario.rossi@example.com', 1), (2, 'Luigi', 'Verdi', 'luigi.verdi@example.com', 2), (3,'Luciano','Spalletti','spalletti@sscnapoli.it',3);
+
+INSERT INTO `centralino`.`telefonate` (`id`, `data`, `ora`, `note`, `esito`, `centralinista`) VALUES (1, '01/01/2023', '10:00', 'Prima telefonata', 1, 1), (2, '02/01/2023', '11:30', 'Seconda telefonata', 2, 2), (3,'23/04/2023','10:00','Sicuramente richiamerà',3,3);
+
+INSERT INTO `centralino`.`appuntamenti` (`idappuntamenti`, `data`, `ora`, `note`, `esito`, `precedente`, `telefonata`, `agente`) VALUES (1, '03/01/2023', '15:00', 'Primo appuntamento', 1, NULL, 1, 'ABCDEF00D11H123N'), (2, '2023-01-04', '16:30', 'Secondo appuntamento', 2, 1, 2, 'KLJFCB73M23K805B');
+
+INSERT INTO `centralino`.`numeritelefonici` (`numero`, `lista`) VALUES ('1234567890', 1), ('9876543210', 2);

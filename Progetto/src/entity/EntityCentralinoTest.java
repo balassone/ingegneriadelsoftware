@@ -22,7 +22,7 @@ public class EntityCentralinoTest {
 		boolean expected=true;
 		EntityCentralino singleton = EntityCentralino.getInstance();
 		int ret = singleton.registraEsitoChiamata("11/12/2022", "15:30", "Telefonata Effettuata", 2, 1);
-		assertEquals("Test[1]",expected,(ret>0));
+		assertEquals(expected,(ret>0));
 	}
 	
 	@Test
@@ -87,7 +87,7 @@ public class EntityCentralinoTest {
 	public void testCreaAppuntamentoOraNV() {
 		EntityCentralino singleton = EntityCentralino.getInstance();
 		boolean expected = false;
-		int ret=singleton.creaAppuntamento("33/13/2022","25:30","ABCDEF00D11H123N", 1);
+		int ret=singleton.creaAppuntamento("12/12/2022","25:30","ABCDEF00D11H123N", 1);
 		assertEquals(expected, (ret>0));
 	}
 	

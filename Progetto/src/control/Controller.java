@@ -211,12 +211,4 @@ public class Controller {
 		}
 	}
 	
-	public static boolean isEsitoTelefonataValido(int esito) throws EsitoTelefonataNonValido{
-		if(esito>0 && esito<6) {
-			return true;
-		} else {
-			throw new EsitoTelefonataNonValido();
-		}
-	}
-	
 }

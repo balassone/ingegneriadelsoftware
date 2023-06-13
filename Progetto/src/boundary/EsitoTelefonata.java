@@ -101,7 +101,7 @@ public class EsitoTelefonata extends JFrame {
 					Controller.isDataValida(data);
 					Controller.isOraValida(ora);
 					Controller.isNotaValida(note);
-					Controller.isEsitoTelefonataValido(esito);
+					// No controllo sull'esito perché interfaccia restrittiva
 					ret = Controller.registraEsitoChiamata(data, ora, note, esito, idCentralinista);
 					if(ret>0) {
 						JOptionPane.showMessageDialog(btnNewButton, "Telefonata inserita correttamente con id="+ret, "Plain Text", JOptionPane.PLAIN_MESSAGE);
@@ -119,8 +119,6 @@ public class EsitoTelefonata extends JFrame {
 					JOptionPane.showMessageDialog(btnNewButton, "Data Non Valida", "Error", JOptionPane.PLAIN_MESSAGE);
 				} catch (NoteNonValide no) {
 					JOptionPane.showMessageDialog(btnNewButton, "Note Non Valide", "Error", JOptionPane.PLAIN_MESSAGE);
-				} catch (EsitoTelefonataNonValido es) {
-					JOptionPane.showMessageDialog(btnNewButton, "Esito Non Valido!", "Error", JOptionPane.PLAIN_MESSAGE);
 				}
 			}
 			
