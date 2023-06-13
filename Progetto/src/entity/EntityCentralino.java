@@ -3,6 +3,10 @@ package entity;
 import java.util.ArrayList;
 
 import database.DBCentralino;
+import exceptions.DataNonValida;
+import exceptions.EsitoTelefonataNonValido;
+import exceptions.NoteNonValide;
+import exceptions.OraNonValida;
 
 public class EntityCentralino {
 	
@@ -314,22 +318,35 @@ public class EntityCentralino {
 	public int registraEsitoChiamata(String data, String ora, String note, int esito, int idCentralinista) {
 		
 		int ret=0;
+		try {
+			int id = ottieniLatestIDTelefonata();
+			EntityTelefonata t = new EntityTelefonata();
+			t.setId(id);
+			t.setData(data);
+			t.setOra(ora);
+			t.setNote(note);
+			t.setEsito(esito);
+			EntityCentralinista ce = new EntityCentralinista(idCentralinista);
+			t.setCentralinista(ce);
 		
-		int id = ottieniLatestIDTelefonata();
-		EntityTelefonata t = new EntityTelefonata();
-		t.setId(id);
-		t.setData(data);
-		t.setOra(ora);
-		t.setNote(note);
-		t.setEsito(esito);
-		EntityCentralinista ce = new EntityCentralinista(idCentralinista);
-		t.setCentralinista(ce);
+			ret = t.salvaInDB();
 		
-		ret = t.salvaInDB();
-		
-		if(ret>0) {
-			ret=id;
+			if(ret>0) {
+				ret=id;
+			}
+		} catch (DataNonValida d){
+			System.out.println(d);
+			ret = -1;
+		} catch (OraNonValida o){
+			System.out.println(o);
+			ret = -1;
+		} catch (NoteNonValide n) {
+			System.out.println(n);
+		} catch (EsitoTelefonataNonValido e) {
+			System.out.println(e);
+			ret=-1;
 		}
+		
 		return ret;
 	}
 	
@@ -350,6 +367,7 @@ public class EntityCentralino {
 		
 		if(ret>0) {
 			ret=id;
+			System.out.println("Chiamata registrata con successo!");
 		}
 		
 		return ret;

@@ -1,7 +1,16 @@
 package entity;
 
 import database.DBTelefonata;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import database.DBCentralinista;
+import exceptions.DataNonValida;
+import exceptions.EsitoTelefonataNonValido;
+import exceptions.NoteNonValide;
+import exceptions.OraNonValida;
 
 public class EntityTelefonata {
 	private int id;
@@ -64,6 +73,9 @@ public class EntityTelefonata {
 		return ret;
 	}
 	
+	// N.B. Nei setters ci sono gli stessi controlli effettuati dalle classi boundary
+	// Per Test jUnit
+	
 	public int getId() {
 		return id;
 	}
@@ -76,32 +88,56 @@ public class EntityTelefonata {
 		return data;
 	}
 
-	public void setData(String data) {
-		this.data = data;
+	public void setData(String data) throws DataNonValida{
+		DateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+        formatoData.setLenient(false); // Impedisce la conversione di date non valide
+
+        try {
+            formatoData.parse(data);
+            this.data=data;
+        } catch (ParseException e) {
+            throw new DataNonValida();
+        }
 	}
 
 	public String getOra() {
 		return ora;
 	}
 
-	public void setOra(String ora) {
-		this.ora = ora;
+	public void setOra(String ora) throws OraNonValida{
+		DateFormat formatoOra = new SimpleDateFormat("HH:mm");
+        formatoOra.setLenient(false); // Impedisce la conversione di orari non validi
+
+        try {
+            formatoOra.parse(ora);
+            this.ora=ora;
+        } catch (ParseException e) {
+            throw new OraNonValida();
+        }
 	}
 
 	public String getNote() {
 		return note;
 	}
 
-	public void setNote(String note) {
-		this.note = note;
+	public void setNote(String note) throws NoteNonValide{
+		if(note.length()<=1000) {
+			this.note=note;
+		} else {
+			throw new NoteNonValide();
+		}
 	}
 
 	public int getEsito() {
 		return esito;
 	}
 
-	public void setEsito(int esito) {
-		this.esito = esito;
+	public void setEsito(int esito) throws EsitoTelefonataNonValido{
+		if(esito>0 && esito<6) {
+			this.esito=esito;
+		} else {
+			throw new EsitoTelefonataNonValido();
+		}
 	}
 
 	public EntityCentralinista getCentralinista() {

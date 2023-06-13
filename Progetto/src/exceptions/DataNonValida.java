@@ -7,7 +7,7 @@ public class DataNonValida extends Exception{
 	}
 	
 	public String toString() {
-		return "Data Non Valida!";
+		return "[ECCEZIONE] Data Non Valida!";
 	}
 	
 }

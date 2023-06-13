@@ -203,4 +203,20 @@ public class Controller {
         }
     }
 	
+	public static boolean isNotaValida(String nota) throws NoteNonValide{
+		if(nota.length()<=1000) {
+			return true;
+		} else {
+			throw new NoteNonValide();
+		}
+	}
+	
+	public static boolean isEsitoTelefonataValido(int esito) throws EsitoTelefonataNonValido{
+		if(esito>0 && esito<6) {
+			return true;
+		} else {
+			throw new EsitoTelefonataNonValido();
+		}
+	}
+	
 }
