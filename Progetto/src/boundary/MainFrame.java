@@ -1,6 +1,5 @@
 package boundary;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -10,8 +9,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Toolkit;
 
 public class MainFrame extends JFrame {
 
@@ -37,6 +40,7 @@ public class MainFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public MainFrame() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\simone\\Documents\\Call Center\\ingegneriadelsoftware-main\\ingegneriadelsoftware-main\\media\\ciuccio.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 665, 482);
 		contentPane = new JPanel();
@@ -44,11 +48,15 @@ public class MainFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Se telefonando io potessi dirti addio...");
-		lblNewLabel.setBounds(10, 11, 299, 14);
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\simone\\Documents\\Call Center\\ingegneriadelsoftware-main\\ingegneriadelsoftware-main\\media\\inkpx-word-art2.png"));
+		lblNewLabel.setBounds(87, 50, 475, 128);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Admin");
+		btnNewButton.setFont(new Font("Bahnschrift", Font.BOLD, 15));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(30, 144, 255));
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -57,11 +65,13 @@ public class MainFrame extends JFrame {
 				
 			}
 		});
-		btnNewButton.setBounds(59, 191, 89, 23);
+		btnNewButton.setBounds(50, 220, 126, 36);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Centralinista");
-		
+		btnNewButton_1.setFont(new Font("Bahnschrift", Font.BOLD, 15));
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setBackground(new Color(30, 144, 255));
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -71,10 +81,13 @@ public class MainFrame extends JFrame {
 				
 			}
 		});
-		btnNewButton_1.setBounds(255, 191, 107, 23);
+		btnNewButton_1.setBounds(262, 220, 126, 36);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Agente");
+		btnNewButton_2.setFont(new Font("Bahnschrift", Font.BOLD, 15));
+		btnNewButton_2.setBackground(new Color(30, 144, 255));
+		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -84,7 +97,23 @@ public class MainFrame extends JFrame {
 				
 			}
 		});
-		btnNewButton_2.setBounds(473, 191, 89, 23);
+		btnNewButton_2.setBounds(474, 220, 126, 36);
 		contentPane.add(btnNewButton_2);
+		
+		ImageIcon imageIcon = new ImageIcon("C:\\Users\\simone\\Documents\\Call Center\\ingegneriadelsoftware-main\\ingegneriadelsoftware-main\\media\\ciuccio.png");
+		int newWidth = imageIcon.getIconWidth() / 10;
+        int newHeight = imageIcon.getIconHeight() / 10;
+		ImageIcon resizedIcon = new ImageIcon(imageIcon.getImage().getScaledInstance(newWidth, newHeight, java.awt.Image.SCALE_SMOOTH));
+
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setIcon(resizedIcon);
+		lblNewLabel_1.setBounds(326, 0, 102, 102);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel sfondo = new JLabel("");
+		sfondo.setIcon(new ImageIcon("C:\\Users\\simone\\Documents\\Call Center\\ingegneriadelsoftware-main\\ingegneriadelsoftware-main\\media\\bigger.jpg"));
+		sfondo.setBounds(0, 0, 650, 450);
+		contentPane.add(sfondo);
 	}
 }

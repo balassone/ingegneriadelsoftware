@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,6 +15,9 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import control.Controller;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Toolkit;
 
 public class CreaGruppo extends JFrame {
 
@@ -40,6 +44,7 @@ public class CreaGruppo extends JFrame {
 	 * Create the frame.
 	 */
 	public CreaGruppo() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\simone\\Documents\\Call Center\\ingegneriadelsoftware-main\\ingegneriadelsoftware-main\\media\\ciuccio.png"));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -47,16 +52,54 @@ public class CreaGruppo extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JPanel panel = new JPanel();
+		panel.setForeground(new Color(255, 255, 255));
+		panel.setBackground(new Color(30, 144, 255));
+		panel.setBounds(10, 85, 103, 30);
+		contentPane.add(panel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Nome gruppo:");
+		lblNewLabel_1.setFont(new Font("Bahnschrift", Font.BOLD, 12));
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		panel.add(lblNewLabel_1);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setForeground(Color.WHITE);
+		panel_1.setBackground(new Color(30, 144, 255));
+		panel_1.setBounds(0, 0, 144, 30);
+		contentPane.add(panel_1);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Creazione gruppo");
+		lblNewLabel_1_1.setForeground(Color.WHITE);
+		lblNewLabel_1_1.setFont(new Font("Bahnschrift", Font.BOLD, 15));
+		panel_1.add(lblNewLabel_1_1);
+		
 		JLabel lblNewLabel = new JLabel("Creazione gruppo");
 		lblNewLabel.setBounds(10, 11, 187, 14);
 		contentPane.add(lblNewLabel);
 		
 		textField = new JTextField();
-		textField.setBounds(10, 85, 414, 20);
+		textField.setBounds(112, 85, 312, 30);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
+		JButton btnAnnulla = new JButton("Annulla");
+		btnAnnulla.setFont(new Font("Bahnschrift", Font.BOLD, 12));
+		btnAnnulla.setBackground(new Color(30, 144, 255));
+		btnAnnulla.setForeground(new Color(255, 255, 255));
+		btnAnnulla.setBounds(242, 225, 89, 30);
+		contentPane.add(btnAnnulla);
+		
+		btnAnnulla.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+		
 		JButton btnNewButton = new JButton("Inserisci");
+		btnNewButton.setFont(new Font("Bahnschrift", Font.BOLD, 12));
+		btnNewButton.setBackground(new Color(30, 144, 255));
+		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int ret=0;
@@ -74,12 +117,13 @@ public class CreaGruppo extends JFrame {
 				
 			}
 		});
-		btnNewButton.setBounds(335, 227, 89, 23);
+		btnNewButton.setBounds(335, 225, 89, 30);
 		contentPane.add(btnNewButton);
 		
-		JLabel lblNewLabel_1 = new JLabel("Nome gruppo:");
-		lblNewLabel_1.setBounds(10, 60, 81, 14);
-		contentPane.add(lblNewLabel_1);
+		JLabel sfondo = new JLabel("");
+		sfondo.setIcon(new ImageIcon("C:\\Users\\simone\\Documents\\Call Center\\ingegneriadelsoftware-main\\ingegneriadelsoftware-main\\media\\istockphoto-899394070-612x612.jpg"));
+		sfondo.setBounds(0, 0, 440, 270);
+		contentPane.add(sfondo);
 	}
 
 }
