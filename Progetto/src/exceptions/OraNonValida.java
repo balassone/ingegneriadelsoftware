@@ -6,6 +6,6 @@ public class OraNonValida extends Exception{
 	}
 	
 	public String toString() {
-		return "Ora Non Valida!";
+		return "[ECCEZIONE] Ora Non Valida!";
 	}
 }

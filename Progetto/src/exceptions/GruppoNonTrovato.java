@@ -6,6 +6,6 @@ public class GruppoNonTrovato extends Exception{
 	}
 	
 	public String toString() {
-		return "Gruppo Non Trovato!";
+		return "[ECCEZIONE] Gruppo Non Trovato!";
 	}
 }

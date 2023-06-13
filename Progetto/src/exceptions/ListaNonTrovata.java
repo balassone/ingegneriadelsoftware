@@ -6,6 +6,6 @@ public class ListaNonTrovata extends Exception{
 	}
 	
 	public String toString() {
-		return "Lista Non Trovata!";
+		return "[ECCEZIONE] Lista Non Trovata!";
 	}
 }

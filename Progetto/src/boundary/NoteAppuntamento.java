@@ -15,6 +15,8 @@ import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
 import control.Controller;
+import exceptions.NoteNonValide;
+
 import javax.swing.JEditorPane;
 
 public class NoteAppuntamento extends JFrame {
@@ -69,7 +71,6 @@ public class NoteAppuntamento extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String id = textField.getText();
 				if(!id.isEmpty()) {
-					// TODO: CF
 					editorPane.setText(Controller.ottieniNoteAppuntamento(CF, Integer.parseInt(id)));
 					textField_1.setText((Controller.ottieniEsitoAppuntamento(CF, Integer.parseInt(id))));
 					
@@ -95,18 +96,23 @@ public class NoteAppuntamento extends JFrame {
 				int ret=0;
 				String id = textField.getText();
 				String testo = editorPane.getText();
-				String esito = textField_1.getText();
-				if(testo.isEmpty() || testo.length()>1000) {
-					JOptionPane.showMessageDialog(btnNewButton, "Note Non Valide", "Error", JOptionPane.PLAIN_MESSAGE);
-				} else if (Integer.parseInt(esito)<0 || Integer.parseInt(esito)>1){
-					JOptionPane.showMessageDialog(btnNewButton, "Esito Non Valido", "Error", JOptionPane.PLAIN_MESSAGE);
-				}	else {
-					ret=Controller.modificaNoteAppuntamento(CF, Integer.parseInt(id), testo,Integer.parseInt(esito));
-					if(ret>0) {
-						JOptionPane.showMessageDialog(btnNewButton, "Appuntamento "+id+" modificato con successo!", "Plain Text", JOptionPane.PLAIN_MESSAGE);
-					} else {
-						JOptionPane.showMessageDialog(btnNewButton, "Non modificato!", "Error", JOptionPane.PLAIN_MESSAGE);
+				String esito = textField_1.getText(); //TODO: metti in ComboBox
+				
+				try {
+					Controller.isNotaValida(testo);
+					if (Integer.parseInt(esito)<0 || Integer.parseInt(esito)>1){
+						JOptionPane.showMessageDialog(btnNewButton, "Esito Non Valido", "Error", JOptionPane.PLAIN_MESSAGE);
+					}	else {
+						ret=Controller.modificaNoteAppuntamento(CF, Integer.parseInt(id), testo,Integer.parseInt(esito));
+						if(ret>0) {
+							JOptionPane.showMessageDialog(btnNewButton, "Appuntamento "+id+" modificato con successo!", "Plain Text", JOptionPane.PLAIN_MESSAGE);
+						} else {
+							JOptionPane.showMessageDialog(btnNewButton, "Non modificato!", "Error", JOptionPane.PLAIN_MESSAGE);
+						}
+					
 					}
+				} catch (NoteNonValide n) {
+					JOptionPane.showMessageDialog(btnNewButton, "Note Non Valide", "Error", JOptionPane.PLAIN_MESSAGE);
 				}
 			}
 		});

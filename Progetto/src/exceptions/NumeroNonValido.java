@@ -6,6 +6,6 @@ public class NumeroNonValido extends Exception{
 	}
 	
 	public String toString() {
-		return "Numero Non Valido!";
+		return "[ECCEZIONE] Numero Non Valido!";
 	}
 }

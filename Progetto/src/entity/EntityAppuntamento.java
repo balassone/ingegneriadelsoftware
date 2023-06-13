@@ -2,6 +2,14 @@ package entity;
 
 import database.DBAppuntamento;
 import database.DBTelefonata;
+import exceptions.DataNonValida;
+import exceptions.NoteNonValide;
+import exceptions.OraNonValida;
+import exceptions.EsitoAppuntamentoNonValido;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import database.DBAgentediVendita;
 
 public class EntityAppuntamento {
@@ -96,6 +104,8 @@ public class EntityAppuntamento {
 		return ret;
 	}
 	
+	// SETTERS: stessi controlli presenti nel Boundary, inseriti ai fini di test jUnit
+	
 	public int getId() {
 		return id;
 	}
@@ -108,32 +118,56 @@ public class EntityAppuntamento {
 		return data;
 	}
 
-	public void setData(String data) {
-		this.data = data;
+	public void setData(String data) throws DataNonValida{
+		DateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+        formatoData.setLenient(false); // Impedisce la conversione di date non valide
+
+        try {
+            formatoData.parse(data);
+            this.data=data;
+        } catch (ParseException e) {
+            throw new DataNonValida();
+        }
 	}
 
 	public String getOra() {
 		return ora;
 	}
 
-	public void setOra(String ora) {
-		this.ora = ora;
+	public void setOra(String ora) throws OraNonValida{
+		DateFormat formatoOra = new SimpleDateFormat("HH:mm");
+        formatoOra.setLenient(false); // Impedisce la conversione di orari non validi
+
+        try {
+            formatoOra.parse(ora);
+            this.ora=ora;
+        } catch (ParseException e) {
+            throw new OraNonValida();
+        }
 	}
 
 	public String getNote() {
 		return note;
 	}
 
-	public void setNote(String note) {
-		this.note = note;
+	public void setNote(String note) throws NoteNonValide{
+		if(note.length()<=1000) {
+			this.note=note;
+		} else {
+			throw new NoteNonValide();
+		}
 	}
 
 	public int getEsito() {
 		return esito;
 	}
 
-	public void setEsito(int esito) {
-		this.esito = esito;
+	public void setEsito(int esito) throws EsitoAppuntamentoNonValido{
+		if(esito==0 || esito==1) {
+			this.esito=esito;
+		} else {
+			throw new EsitoAppuntamentoNonValido();
+		}
 	}
 
 	public EntityTelefonata getTelefonata() {

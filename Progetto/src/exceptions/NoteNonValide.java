@@ -6,6 +6,6 @@ public class NoteNonValide extends Exception{
 	}
 	
 	public String toString() {
-		return "Note Non Valide!";
+		return "[ECCEZIONE] Note Non Valide!";
 	}
 }

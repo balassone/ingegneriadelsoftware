@@ -1,7 +1,7 @@
 package exceptions;
 
-public class EsitoTelefonataNonValido extends Exception{
-	public EsitoTelefonataNonValido() {
+public class EsitoAppuntamentoNonValido extends Exception{
+	public EsitoAppuntamentoNonValido() {
 		super();
 	}
 	

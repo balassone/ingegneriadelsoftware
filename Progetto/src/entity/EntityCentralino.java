@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import database.DBCentralino;
 import exceptions.DataNonValida;
+import exceptions.EsitoAppuntamentoNonValido;
 import exceptions.EsitoTelefonataNonValido;
 import exceptions.NoteNonValide;
 import exceptions.OraNonValida;
@@ -291,9 +292,17 @@ public class EntityCentralino {
 		ArrayList<EntityAppuntamento> l = ottieniAppuntamenti(cf);
 		for(int i=0; i<l.size(); i++) {
 			if(l.get(i).getId()==idAppuntamento) {
-				l.get(i).setEsito(esito);
-				l.get(i).setNote(nuoveNote);
-				ret = l.get(i).aggiornaSuDB();
+				try {
+					l.get(i).setEsito(esito);
+					l.get(i).setNote(nuoveNote);
+					ret = l.get(i).aggiornaSuDB();
+				} catch (NoteNonValide n) {
+					System.out.println(n);
+					ret = -1;
+				} catch (EsitoAppuntamentoNonValido e) { 
+					System.out.println(e);
+					ret = -1;
+				}
 			}
 		}
 		
@@ -333,6 +342,7 @@ public class EntityCentralino {
 		
 			if(ret>0) {
 				ret=id;
+				System.out.println("Chiamata registrata con successo!");
 			}
 		} catch (DataNonValida d){
 			System.out.println(d);
@@ -356,20 +366,27 @@ public class EntityCentralino {
 		int ret=0;
 		
 		int id = ottieniLatestIDAppuntamento();
-		EntityAppuntamento a = new EntityAppuntamento();
-		a.setId(id);
-		a.setData(data);
-		a.setOra(ora);
-		a.setAgente(new EntityAgentediVendita(agente));
-		a.setTelefonata(new EntityTelefonata(idTelefonata));
+		try {
+			EntityAppuntamento a = new EntityAppuntamento();
+			a.setId(id);
+			a.setData(data);
+			a.setOra(ora);
+			a.setAgente(new EntityAgentediVendita(agente));
+			a.setTelefonata(new EntityTelefonata(idTelefonata));
 		
-		ret = a.salvaInDB();
+			ret = a.salvaInDB();
 		
-		if(ret>0) {
-			ret=id;
-			System.out.println("Chiamata registrata con successo!");
+			if(ret>0) {
+				ret=id;
+				System.out.println("Appuntamento registrato con successo!");
+			}
+		} catch (DataNonValida d) {
+			System.out.println(d);
+			ret=-1;
+		} catch (OraNonValida o) {
+			System.out.println(o);
+			ret=-1;
 		}
-		
 		return ret;
 	}
 	

@@ -98,17 +98,15 @@ public class CreaAppuntamento extends JFrame {
 					Controller.isDataValida(data);
 				
 					Controller.isOraValida(ora);
-						
-					if(agente.isEmpty() || !(Controller.trovaAgente(agente)>0)){
-						JOptionPane.showMessageDialog(btnNewButton, "Agente Non Trovato", "Error", JOptionPane.PLAIN_MESSAGE);
+					
+					ret = Controller.creaAppuntamento(data, ora, agente,callID);
+					if(ret>0) {
+						JOptionPane.showMessageDialog(btnNewButton, "Appuntamento inserito correttamente con id="+ret, "Plain Text", JOptionPane.PLAIN_MESSAGE);
 					} else {
-						ret = Controller.creaAppuntamento(data, ora, agente,callID);
-						if(ret>0) {
-							JOptionPane.showMessageDialog(btnNewButton, "Appuntamento inserito correttamente con id="+ret, "Plain Text", JOptionPane.PLAIN_MESSAGE);
-						} else {
-							JOptionPane.showMessageDialog(btnNewButton, "Appuntamento non inserita", "Error", JOptionPane.PLAIN_MESSAGE);
-						}
+						JOptionPane.showMessageDialog(btnNewButton, "Appuntamento non inserita", "Error", JOptionPane.PLAIN_MESSAGE);
 					}
+					
+					// No controlli sull'agente perché si è forzati ad inserirne uno esistente
 						
 				} catch (OraNonValida ex) {
 					JOptionPane.showMessageDialog(btnNewButton, "Ora Non Valida", "Error", JOptionPane.PLAIN_MESSAGE);
