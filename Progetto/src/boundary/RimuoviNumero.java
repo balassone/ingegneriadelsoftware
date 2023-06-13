@@ -49,7 +49,7 @@ public class RimuoviNumero extends JFrame {
 	 * Create the frame.
 	 */
 	public RimuoviNumero() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\simone\\Documents\\Call Center\\ingegneriadelsoftware-main\\ingegneriadelsoftware-main\\media\\ciuccio.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/ciuccio.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -169,7 +169,7 @@ public class RimuoviNumero extends JFrame {
 		panel_1_1.add(lblNewLabel_1_1);
 		
 		JLabel sfondo = new JLabel("");
-		sfondo.setIcon(new ImageIcon("C:\\Users\\simone\\Documents\\Call Center\\ingegneriadelsoftware-main\\ingegneriadelsoftware-main\\media\\istockphoto-899394070-612x612.jpg"));
+		sfondo.setIcon(new ImageIcon(this.getClass().getResource("/istockphoto-899394070-612x612.jpg")));
 		sfondo.setBounds(0, 0, 440, 270);
 		contentPane.add(sfondo);
 	}

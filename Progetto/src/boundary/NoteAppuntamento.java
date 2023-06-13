@@ -55,7 +55,7 @@ public class NoteAppuntamento extends JFrame {
 	}
 	
 	public NoteAppuntamento(String CF) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\simone\\Documents\\Call Center\\ingegneriadelsoftware-main\\ingegneriadelsoftware-main\\media\\ciuccio.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/ciuccio.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 607, 430);
 		contentPane = new JPanel();
@@ -169,7 +169,7 @@ public class NoteAppuntamento extends JFrame {
 		contentPane.add(btnNewButton_1);
 		
 		JLabel sfondo = new JLabel("");
-		sfondo.setIcon(new ImageIcon("C:\\Users\\simone\\Documents\\Call Center\\ingegneriadelsoftware-main\\ingegneriadelsoftware-main\\media\\bigger.jpg"));
+		sfondo.setIcon(new ImageIcon(this.getClass().getResource("/bigger.jpg")));
 		sfondo.setBounds(0, 0, 590, 391);
 		contentPane.add(sfondo);
 	}
