@@ -145,6 +145,7 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 INSERT INTO `centralino`.`agentidivendita` (`codicefiscale`) VALUES ('ABCDEF00D11H123N');
+INSERT INTO `centralino`.`agentidivendita` (`codicefiscale`) VALUES ('BNCNHA92L55F205B');
 INSERT INTO `centralino`.`agentidivendita` (`codicefiscale`) VALUES ('GHIJLM01E12F456K');
 INSERT INTO `centralino`.`agentidivendita` (`codicefiscale`) VALUES ('KLJFCB73M23K805B');
 INSERT INTO `centralino`.`agentidivendita` (`codicefiscale`) VALUES ('FOOBAR36b87P365D');
