@@ -298,7 +298,7 @@ public class EntityCentralino {
 					ret = -1;
 				} catch (EsitoAppuntamentoNonValido e) { 
 					System.out.println(e);
-					ret = -1;
+					ret = -2;
 				}
 			}
 		}
@@ -346,12 +346,13 @@ public class EntityCentralino {
 			ret = -1;
 		} catch (OraNonValida o){
 			System.out.println(o);
-			ret = -1;
+			ret = -2;
 		} catch (NoteNonValide n) {
 			System.out.println(n);
+			ret = -3;
 		} catch (EsitoTelefonataNonValido e) {
 			System.out.println(e);
-			ret=-1;
+			ret=-4;
 		}
 		
 		return ret;
@@ -382,7 +383,7 @@ public class EntityCentralino {
 			ret=-1;
 		} catch (OraNonValida o) {
 			System.out.println(o);
-			ret=-1;
+			ret=-2;
 		}
 		return ret;
 	}
