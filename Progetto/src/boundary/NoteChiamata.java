@@ -50,7 +50,7 @@ public class NoteChiamata extends JFrame {
 	}
 	
 	public NoteChiamata(String CF) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/images/ciuccio.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/ciuccio.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 607, 395);
 		contentPane = new JPanel();
@@ -117,7 +117,7 @@ public class NoteChiamata extends JFrame {
 		panel_1.add(lblNewLabel_1_1);
 		
 		JLabel sfondo = new JLabel("");
-		sfondo.setIcon(new ImageIcon(this.getClass().getResource("/images/bigger.jpg")));
+		sfondo.setIcon(new ImageIcon(this.getClass().getResource("/bigger.jpg")));
 		sfondo.setBounds(0, 0, 591, 356);
 		contentPane.add(sfondo);
 	}

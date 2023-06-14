@@ -40,7 +40,7 @@ public class MainFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public MainFrame() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(MainFrame.class.getResource("/images/ciuccio.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/ciuccio.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 665, 482);
 		contentPane = new JPanel();
@@ -49,7 +49,7 @@ public class MainFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(MainFrame.class.getResource("/images/inkpx-word-art2.png")));
+		lblNewLabel.setIcon(new ImageIcon(this.getClass().getResource("/inkpx-word-art2.png")));
 		lblNewLabel.setBounds(87, 50, 475, 128);
 		contentPane.add(lblNewLabel);
 		
@@ -100,7 +100,7 @@ public class MainFrame extends JFrame {
 		btnNewButton_2.setBounds(474, 220, 126, 36);
 		contentPane.add(btnNewButton_2);
 		
-		ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/images/ciuccio.png"));
+		ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/ciuccio.png"));
 		int newWidth = imageIcon.getIconWidth() / 10;
         int newHeight = imageIcon.getIconHeight() / 10;
 		ImageIcon resizedIcon = new ImageIcon(imageIcon.getImage().getScaledInstance(newWidth, newHeight, java.awt.Image.SCALE_SMOOTH));
@@ -108,11 +108,11 @@ public class MainFrame extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setIcon(resizedIcon);
-		lblNewLabel_1.setBounds(326, 0, 102, 102);
+		lblNewLabel_1.setBounds(430, 2, 91, 91);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel sfondo = new JLabel("");
-		sfondo.setIcon(new ImageIcon(MainFrame.class.getResource("/images/bigger.jpg")));
+		sfondo.setIcon(new ImageIcon(this.getClass().getResource("/bigger.jpg")));
 		sfondo.setBounds(0, 0, 650, 450);
 		contentPane.add(sfondo);
 	}
