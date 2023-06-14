@@ -63,7 +63,7 @@ public class CreaAppuntamento extends JFrame {
 
 	
 	public CreaAppuntamento(int id) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/ciuccio.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/images/ciuccio.png")));
 		this.callID=id;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -178,7 +178,7 @@ public class CreaAppuntamento extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JLabel sfondo = new JLabel("");
-		sfondo.setIcon(new ImageIcon(this.getClass().getResource("/istockphoto-899394070-612x612.jpg")));
+		sfondo.setIcon(new ImageIcon(this.getClass().getResource("/images/istockphoto-899394070-612x612.jpg")));
 		sfondo.setBounds(0, 0, 440, 270);
 		contentPane.add(sfondo);
 	}

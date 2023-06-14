@@ -59,7 +59,7 @@ public class EsitoTelefonata extends JFrame {
 	}
 	
 	public EsitoTelefonata(int idCentralinista) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/ciuccio.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/images/ciuccio.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -157,7 +157,6 @@ public class EsitoTelefonata extends JFrame {
 					Controller.isDataValida(data);
 					Controller.isOraValida(ora);
 					Controller.isNotaValida(note);
-					Controller.isEsitoTelefonataValido(esito);
 					ret = Controller.registraEsitoChiamata(data, ora, note, esito, idCentralinista);
 					if(ret>0) {
 						JOptionPane.showMessageDialog(btnNewButton, "Telefonata inserita correttamente con id="+ret, "Plain Text", JOptionPane.PLAIN_MESSAGE);
@@ -175,8 +174,6 @@ public class EsitoTelefonata extends JFrame {
 					JOptionPane.showMessageDialog(btnNewButton, "Data Non Valida", "Error", JOptionPane.PLAIN_MESSAGE);
 				} catch (NoteNonValide no) {
 					JOptionPane.showMessageDialog(btnNewButton, "Note Non Valide", "Error", JOptionPane.PLAIN_MESSAGE);
-				} catch (EsitoTelefonataNonValido es) {
-					JOptionPane.showMessageDialog(btnNewButton, "Esito Non Valido!", "Error", JOptionPane.PLAIN_MESSAGE);
 				}
 			}
 			
@@ -203,7 +200,7 @@ public class EsitoTelefonata extends JFrame {
 		panel_1.add(lblNewLabel_4);
 		
 		JLabel sfondo = new JLabel("");
-		sfondo.setIcon(new ImageIcon(this.getClass().getResource("/istockphoto-899394070-612x612.jpg")));
+		sfondo.setIcon(new ImageIcon(this.getClass().getResource("/images/istockphoto-899394070-612x612.jpg")));
 		sfondo.setBounds(0, 0, 440, 270);
 		contentPane.add(sfondo);
 	}

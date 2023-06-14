@@ -151,10 +151,15 @@ INSERT INTO `centralino`.`agentidivendita` (`codicefiscale`) VALUES ('KLJFCB73M2
 INSERT INTO `centralino`.`agentidivendita` (`codicefiscale`) VALUES ('FOOBAR36b87P365D');
 
 INSERT INTO `centralino`.`listenumeritelefonici` (`id`, `nome`) VALUES (1, 'Marketing'), (2, 'Business'), (3, 'Customer Service');
+INSERT INTO `centralino`.`listenumeritelefonici` (`id`, `nome`) VALUES (4, 'ClientiVodafone'), (5, 'ClientiTim'), (6, 'Clienti3');
 
 INSERT INTO `centralino`.`gruppi` (`id`, `descrizione`, `lista`) VALUES (1, 'Vendite', 1), (2, 'Consulenze', 2), (3, 'Assistenza',3);
 
 INSERT INTO `centralino`.`centralinisti` (`id`, `nome`, `cognome`, `email`, `gruppo`) VALUES (1, 'Mario', 'Rossi', 'mario.rossi@example.com', 1), (2, 'Luigi', 'Verdi', 'luigi.verdi@example.com', 2), (3,'Luciano','Spalletti','spalletti@sscnapoli.it',3);
+
+INSERT INTO `centralino`.`centralinisti` (`id`, `nome`, `cognome`, `email`, `gruppo`) VALUES (4, 'Francesco', 'Conti', 'francesco.conti@example.com', 1), (5, 'Martina', 'Moretti', 'martina.moretti@example.com', 2), (6,'Sofia','Santoro','sofia.santoro@sscnapoli.it',3);
+
+INSERT INTO `centralino`.`centralinisti` (`id`, `nome`, `cognome`, `email`, `gruppo`) VALUES (7, 'Marco', 'Bianchi', 'marco.bianchi@example.com', 1), (8, 'Giulia', 'Russo','giulia.russo@example.com', 2), (9,'Luca','Ferrari','luca.ferrari@sscnapoli.it',3);
 
 INSERT INTO `centralino`.`telefonate` (`id`, `data`, `ora`, `note`, `esito`, `centralinista`) VALUES (1, '01/01/2023', '10:00', 'Prima telefonata', 1, 1), (2, '02/01/2023', '11:30', 'Seconda telefonata', 2, 2), (3,'23/04/2023','10:00','Sicuramente richiamerà',3,3);
 

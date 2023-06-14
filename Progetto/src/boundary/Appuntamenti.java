@@ -55,7 +55,7 @@ public class Appuntamenti extends JFrame {
 	}
 	
 	public Appuntamenti(String CF) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/ciuccio.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/images/ciuccio.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 699, 570);
 		contentPane = new JPanel();
@@ -101,7 +101,7 @@ public class Appuntamenti extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JLabel sfondo = new JLabel("");
-		sfondo.setIcon(new ImageIcon(this.getClass().getResource("/bigger.jpg")));
+		sfondo.setIcon(new ImageIcon(this.getClass().getResource("/images/bigger.jpg")));
 		sfondo.setBounds(0, 0, 683, 531);
 		contentPane.add(sfondo);
 	}
