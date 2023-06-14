@@ -49,7 +49,7 @@ public class Referenzia extends JFrame {
 	 * Create the frame.
 	 */
 	public Referenzia() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/ciuccio.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/images/ciuccio.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -200,7 +200,7 @@ public class Referenzia extends JFrame {
 		contentPane.add(textField_3);
 		
 		JLabel sfondo = new JLabel("");
-		sfondo.setIcon(new ImageIcon(this.getClass().getResource("/istockphoto-899394070-612x612.jpg")));
+		sfondo.setIcon(new ImageIcon(this.getClass().getResource("/images/istockphoto-899394070-612x612.jpg")));
 		sfondo.setBounds(0, 0, 440, 270);
 		contentPane.add(sfondo);
 	}
