@@ -165,4 +165,4 @@ INSERT INTO `centralino`.`telefonate` (`id`, `data`, `ora`, `note`, `esito`, `ce
 
 INSERT INTO `centralino`.`appuntamenti` (`idappuntamenti`, `data`, `ora`, `note`, `esito`, `precedente`, `telefonata`, `agente`) VALUES (1, '03/01/2023', '15:00', 'Primo appuntamento', 1, NULL, 1, 'ABCDEF00D11H123N'), (2, '2023-01-04', '16:30', 'Secondo appuntamento', 2, 1, 2, 'KLJFCB73M23K805B');
 
-INSERT INTO `centralino`.`numeritelefonici` (`numero`, `lista`) VALUES ('1234567890', 1), ('9876543210', 2);
+INSERT INTO `centralino`.`numeritelefonici` (`numero`, `lista`) VALUES ('1234567890', 1), ('9876543210', 2), ('1111231234', 1), ('2221231234', 2);

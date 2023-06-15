@@ -108,7 +108,7 @@ public class MainFrame extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setIcon(resizedIcon);
-		lblNewLabel_1.setBounds(326, 0, 102, 102);
+		lblNewLabel_1.setBounds(430, 2, 91, 91);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel sfondo = new JLabel("");
