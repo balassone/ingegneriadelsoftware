@@ -19,7 +19,7 @@ public class EntityCentralino {
 	private ArrayList<EntityAppuntamento> appuntamenti;
 	private ArrayList<EntityTelefonata> telefonate;
 	
-	public EntityCentralino() {
+	private EntityCentralino() { // Singleton: costruttore privato.
 		super();
 	}
 	// Singleton
