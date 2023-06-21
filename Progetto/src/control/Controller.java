@@ -133,12 +133,12 @@ public class Controller {
 	}
 	
 	public static ArrayList<String> numeriDaChiamare(int idCentralinista) {
-		EntityCentralino singleton = EntityCentralino.getInstance();
+		EntityCentralino singleton = EntityCentralino.getInstance(); // Qua stava il costruttore sbagliato!
 		return singleton.numeriDaChiamare(idCentralinista);
 	}
 	
 	public static int registraEsitoChiamata(String data, String ora, String note, int esito, int idCentralinista) {
-		EntityCentralino singleton = new EntityCentralino();
+		EntityCentralino singleton = EntityCentralino.getInstance();
 		return singleton.registraEsitoChiamata(data, ora, note, esito, idCentralinista);
 	}
 	
