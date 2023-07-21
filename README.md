@@ -1,4 +1,4 @@
 # ingegneriadelsoftware
 Progetto IS
 
-# Carmine was here
+![Logo](img/logo.png)
